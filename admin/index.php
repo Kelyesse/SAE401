@@ -5,7 +5,7 @@ if (!isset($_SESSION['username'])) {
     header('location:login/');
 }
 
-include('../include/dbb.php');
+include('../include/db.php');
 
 $query = "SELECT * FROM user";
 

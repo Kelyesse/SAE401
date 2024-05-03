@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once 'include/dbb.php';
+require_once 'include/db.php';
 
 
 $conn = new mysqli($servername, $username, $password, $dbname);
