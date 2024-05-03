@@ -86,15 +86,10 @@
          });
          </script>
 
-
-
-
-
          <div class="form-group col-md-12">
              <label for="year">Année de BUT</label>
              <input type="number" name="create" id="year" min="2000" max="2030" required>
          </div>
-
 
          <div class="form-group col-md-12">
              <!-- <label for="type">Type : </label> -->
@@ -111,18 +106,11 @@
 
          </div>
 
-
-
-
          <div class="form-group col-md-2 ml-auto">
              <input type="submit" name="addtoportfolio" class="btn btn-primary" value="Add To Portfolio">
          </div>
 
-
-
  </form>
-
-
 
  <!-- Edit traces -->
 
