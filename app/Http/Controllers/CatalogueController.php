@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Livre;
+use App\Models\Livre; // Assurez-vous d'importer le modèle Livre si ce n'est pas déjà fait
 
 class CatalogueController extends Controller
 {
-    public function getBooks()
+    public function getAllBooks()
     {
-        $books = Livre::with(['auteur', 'editeur', 'langue'])->get();
+        $books = Livre::all();
         return response()->json($books);
     }
 }
+

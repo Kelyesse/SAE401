@@ -16,4 +16,4 @@ Route::get('/catalogue', function () {
     return view('catalogue');
 });
 
-Route::get('/api/books', [CatalogueController::class, 'getBooks']);
+Route::get('/api/books', [CatalogueController::class, 'getAllBooks']);
