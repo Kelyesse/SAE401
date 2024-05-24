@@ -23,17 +23,16 @@ class Database
         trigger_error('Impossible de cloner', E_USER_ERROR);
     }
 
-    final public function getConnection()
+    public function getConnection()
     {
-        $host = "10.21.162.221";
-        $dbName = "mediatheque";
-        $port = "3306";
-        $username = "root";
-        $password = "root";
+        $host = '185.98.131.149';
+        $username = 'kourd2142291';
+        $password = 'c6qkzhj0sb';
+        $dbName = 'kourd2142291_1u9fc1';
+        $dsn = "mysql:host=$host;dbname=$dbName;charset=utf8mb4";
 
         if (self::$connection == NULL) {
             try {
-                $dsn = "mysql:host=$host;dbname=$dbName;port=$port";
                 self::$connection = new PDO($dsn, $username, $password, [
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
@@ -45,5 +44,4 @@ class Database
         return self::$connection;
     }
 }
-
-
+?>
