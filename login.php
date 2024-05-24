@@ -1,42 +1,34 @@
 <?php
 session_start();
-
 require_once 'include/db.php';
 
+$bdd = Connexion();
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-
-if (isset($_POST['firstname']) and isset($_POST['lastname']) and isset($_POST['email']) and isset($_POST['password'])) {
+if (isset($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['password'])) {
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $user_acess = 2; 
-    $sql = "INSERT INTO `user` (firstname, lastname, email, password, user_acess) VALUES ('$firstname', '$lastname', '$email', '$password', '$user_acess')";
+    $user_acess = 2;
 
-    if ($conn->query($sql) === TRUE) {
+    $sql = "INSERT INTO `user` (firstname, lastname, email, password, user_acess) VALUES (?, ?, ?, ?, ?)";
+    $stmt = $bdd->prepare($sql);
+    if ($stmt->execute([$firstname, $lastname, $email, $password, $user_acess])) {
         header('location: login.php?msg=register');
+        exit;
     } else {
-        echo "Erreur: " . $sql . "<br>" . $conn->error;
+        echo "Erreur: " . $stmt->errorInfo()[2];
     }
 }
 
-
-if (isset($_POST['email']) and isset($_POST['password'])) {
-
+if (isset($_POST['email'], $_POST['password'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $sql = "SELECT * FROM `user` WHERE email = '$email'";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
+    $sql = "SELECT * FROM `user` WHERE email = ?";
+    $stmt = $bdd->prepare($sql);
+    $stmt->execute([$email]);
+    if ($stmt->rowCount() > 0) {
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
         if (password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['firstname'] . " " . $user['lastname'];
@@ -44,14 +36,13 @@ if (isset($_POST['email']) and isset($_POST['password'])) {
 
             if ($user['status'] == 'off') {
                 header("location: login.php?msg=off");
-                die();
+                exit;
             } elseif ($user['user_acess'] == 1) {
-
                 header("location: admin/index.php");
-                die();
+                exit;
             } elseif ($user['user_acess'] == 2) {
                 header("location: index.php");
-                die();
+                exit;
             }
         } else {
             echo "Mot de passe incorrect";
@@ -61,15 +52,13 @@ if (isset($_POST['email']) and isset($_POST['password'])) {
     }
 }
 
-
-
 if (isset($_GET['logout'])) {
     session_destroy();
     unset($_SESSION['user_id']);
     echo "Déconnexion réussie";
 }
 
-$conn->close();
+$bdd = null;
 ?>
 
 
@@ -93,10 +82,6 @@ $conn->close();
         rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-
-    <!-- Favicons
-	================================================== -->
-    <link rel="shortcut icon" type="image/png" href="assets/img/Elyesse.png">
 
 </head>
 
