@@ -25,7 +25,7 @@ class Database
 
     final public function getConnection()
     {
-        $host = "10.21.162.221";
+        $host = "13.48.3.160";
         $dbName = "mediatheque";
         $port = "3306";
         $username = "root";

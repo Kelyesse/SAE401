@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Livre; // Assurez-vous d'importer le modèle Livre si ce n'est pas déjà fait
+use App\Models\Livre;
 
 class CatalogueController extends Controller
 {
