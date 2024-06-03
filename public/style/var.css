@@ -1,0 +1,8 @@
+/* var.css */
+
+/* Define some basic variables */
+:root {
+    --primary-color: #960F26; /* Main background color */
+    --secondary-color: #0DDDF9; /* Text color */
+    --background-color: #010423; /* Text color */
+}
