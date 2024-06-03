@@ -18,16 +18,16 @@
     src: url(../fonts/Stara-Medium.otf);
 }
 
-#titre{
+#titre {
     padding: 80px;
 }
 
-#titre-texte{
+#titre-texte {
     font-size: 36px;
     font-family: 'stara-bold';
 }
 
-#section-formulaire{
+#section-formulaire {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -37,7 +37,7 @@
     margin-bottom: 50px;
 }
 
-#description{
+#description {
     display: flex;
     justify-content: center;
     text-align: center;
@@ -46,69 +46,77 @@
     margin-bottom: 20px;
 }
 
-#champs{
+#champs {
     display: flex;
     flex-direction: column;
 }
 
-.titre{
+.titre {
     font-family: 'stara-black';
     font-size: 20px;
 }
 
-input{
+input {
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
+input[type=text], input[type=number], input[type=email], textarea {
+    padding-left: 10px;
+}
 
-#sous-adresse,#inputs-contact,#inputs-nom{
+#sous-adresse, #inputs-contact, #inputs-nom {
     display: flex;
     justify-content: space-between;
 }
 
-.input-full{
+.input-full {
     width: 650px;
     height: 50px;
     background-color: #ededed;
     border: none;
 }
 
-.input-half{
+.input-half {
     width: 300px;
     height: 50px;
     background-color: #ededed;
     border: none;
 }
 
-.input-tier{
+.input-tier {
     width: 200px;
     height: 50px;
     background-color: #ededed;
     border: none;
 }
-::placeholder{
-    padding-left: 10px;
+
+::placeholder {
     color: #b3b3b3;
 }
 
-#newsletter{
+#input-question {
+    height: 100px;
+    margin-top: 20px;
+}
+
+#newsletter {
     display: flex;
     align-items: center;
 }
 
-#ligne-rouge{
+#ligne-rouge {
     border-bottom: 3px solid #960F26;
     width: 385px;
 }
 
-#text-newsletter{
+#text-newsletter {
     margin-left: 5px;
     font-family: 'stara-medium';
     font-size: 14px;
 }
 
-#contactform-submit{
+#contactform-submit {
     width: 150px;
     height: 50px;
     border-radius: 10px;
