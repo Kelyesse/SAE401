@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CatalogueController;
 
-
 Route::get('/', function () {
     return view('index');
 });
@@ -14,6 +13,10 @@ Route::get('/index', function () {
 
 Route::get('/catalogue', function () {
     return view('catalogue');
+});
+
+Route::get('/login', function () {
+    return view('login');
 });
 
 Route::get('/api/books', [CatalogueController::class, 'getAllBooks']);
