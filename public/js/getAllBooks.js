@@ -7,7 +7,7 @@ document.addEventListener("alpine:init", () => {
             try {
                 const response = await fetch("/api/books");
                 const data = await response.json();
-                console.log(data); // Vérifiez que les données sont correctement récupérées
+                console.log(data);
                 this.books = data;
             } catch (error) {
                 console.error(

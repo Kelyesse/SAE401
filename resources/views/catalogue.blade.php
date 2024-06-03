@@ -17,8 +17,9 @@
         <ul>
             <template x-for="book in books">
                 <div>
-                    <li x-text="book.titre"></li>
-                    <li x-text="book.annee"></li>
+                    <div x-text="book.titre"></div>
+                    <div x-text="book.annee"></div>
+                    <img :src="`{{ asset('storage') }}/${book . imgUrl}`" alt="Book Image">
                 </div>
             </template>
         </ul>
