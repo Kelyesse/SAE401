@@ -1,0 +1,121 @@
+@font-face {
+    font-family: 'stara-black';
+    src: url(../fonts/Stara-Black.otf);
+}
+
+@font-face {
+    font-family: 'source-sans-bold';
+    src: url(../fonts/SourceSans3-Bold.ttf);
+}
+
+@font-face {
+    font-family: 'stara-bold';
+    src: url(../fonts/Stara-Bold.otf);
+}
+
+@font-face {
+    font-family: 'stara-medium';
+    src: url(../fonts/Stara-Medium.otf);
+}
+
+#titre{
+    padding: 80px;
+}
+
+#titre-texte{
+    font-size: 36px;
+    font-family: 'stara-bold';
+}
+
+#section-formulaire{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+}
+
+#description{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: 'stara-medium';
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+#champs{
+    display: flex;
+    flex-direction: column;
+}
+
+.titre{
+    font-family: 'stara-black';
+    font-size: 20px;
+}
+
+input{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+#sous-adresse,#inputs-contact,#inputs-nom{
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-full{
+    width: 650px;
+    height: 50px;
+    background-color: #ededed;
+    border: none;
+}
+
+.input-half{
+    width: 300px;
+    height: 50px;
+    background-color: #ededed;
+    border: none;
+}
+
+.input-tier{
+    width: 200px;
+    height: 50px;
+    background-color: #ededed;
+    border: none;
+}
+::placeholder{
+    padding-left: 10px;
+    color: #b3b3b3;
+}
+
+#newsletter{
+    display: flex;
+    align-items: center;
+}
+
+#ligne-rouge{
+    border-bottom: 3px solid #960F26;
+    width: 385px;
+}
+
+#text-newsletter{
+    margin-left: 5px;
+    font-family: 'stara-medium';
+    font-size: 14px;
+}
+
+#contactform-submit{
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #960F26;
+    border: none;
+    color: #fff;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'stara-bold';
+}
