@@ -1,13 +1,112 @@
 @import url('var.css');
 
 
-.page-title{
-    font-size: 20px;
-    font-weight: bold;
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-.title-underline{
-    width: 120px;
-    height: 3px;
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.title-underline {
+    width: 80px;
+    height: 4px;
     background-color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.book-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.book-item {
+    flex: 1 1 200px; 
+    margin: 20px;
+    text-align: center;
+}
+
+.book-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.book-year {
+    color: gray;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+/* Book Image Styles */
+img {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Filter Tags Styles */
+.filter-tags {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filter-tag {
+    background-color: #f1f1f1;
+    padding: 5px 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.filter-tag img {
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+}
+
+/* Search Bar Styles */
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
+
+.search-bar button {
+    background-color: #d32f2f;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar button img {
+    width: 20px;
+    height: 20px;
 }
