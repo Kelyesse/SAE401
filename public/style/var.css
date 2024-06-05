@@ -7,6 +7,21 @@
 }
 
 @font-face {
-    font-family: 'stara'; /* Replace 'YourFontName' with the actual name of your font */
-    src: url('../../resources/fonts/Stara-Black.otf'); /* Fallback font format */
+    font-family: 'stara'; 
+    src: url('../../resources/fonts/Stara-Black.otf');
+}
+
+@font-face {
+    font-family: 'source-sans-bold';
+    src: url('../../resources/fonts/SourceSans3-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'stara-bold';
+    src: url('../../resources/fonts/Stara-Bold.otf');
+}
+@font-face {
+    font-family: 'stara-medium';
+    src: url('../../resources/fonts/Stara-Medium.otf');
+
 }

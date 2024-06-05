@@ -1,24 +1,9 @@
+@import url('var.css');
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
-@font-face {
-    font-family: 'stara-black';
-    src: url(../fonts/Stara-Black.otf);
-}
-
-@font-face {
-    font-family: 'source-sans-bold';
-    src: url(../fonts/SourceSans3-Bold.ttf);
-}
-
-@font-face {
-    font-family: 'stara-bold';
-    src: url(../fonts/Stara-Bold.otf);
-}
-
 
 @media screen and (min-width: 1000px) {
 
@@ -33,7 +18,7 @@
     }
     
     #logo_desktop {
-        font-family:'stara-black';
+        font-family:'stara';
     }
     
     a {
@@ -85,7 +70,7 @@
     }
     
     #logo_desktop {
-        font-family:'stara-black';
+        font-family:'stara';
         font-size: 20px;
     }
     
