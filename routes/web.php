@@ -16,8 +16,12 @@ Route::get('/catalogue', function () {
     return view('catalogue');
 });
 
+
 Route::get('/ressources', function () {
     return view('ressource');
+});
+Route::get('/contact', function () {
+    return view('contact');
 });
 
 Route::get('/api/books', [CatalogueController::class, 'getAllBooks']);
