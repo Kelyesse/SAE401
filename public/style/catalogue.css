@@ -1,13 +1,105 @@
 @import url('var.css');
 
 
-.page-title{
-    font-size: 20px;
+/* General Styles */
+body {
+    font-family: 'stara';
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.search-section{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px 0px;
+}
+
+.page-title {
+    font-size: 32px;
     font-weight: bold;
 }
 
-.title-underline{
+.title-underline {
     width: 120px;
-    height: 3px;
+    height: 2px;
     background-color: var(--primary-color);
+}
+
+.book-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.book-item {
+    
+    margin: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.book-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.book-year {
+    color: gray;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+
+.book-img {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.filter-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-bar input {
+    width: 200px;
+    height: 18px;
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px 0px 0px 20px;
+}
+
+.search-bar .search-button {
+    background-color: var(--black-color);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 0% 50% 50% 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -15px;
+}
+
+.search-bar .search-button img {
+    width: 20px;
+    height: 20px;
 }

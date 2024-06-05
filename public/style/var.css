@@ -1,8 +1,28 @@
-/* var.css */
 
-/* Define some basic variables */
 :root {
-    --primary-color: #960F26; /* Main background color */
-    --secondary-color: #0DDDF9; /* Text color */
-    --background-color: #010423; /* Text color */
+    --primary-color: #960F26; 
+    --secondary-color: #0DDDF9;
+    --black-color: #1C1C1F; 
+    --background-color: #010423; 
 }
+
+
+@font-face {
+    font-family: 'stara'; 
+    src: url('../fonts/SourceSans3-Black.ttf');
+}
+
+@font-face {
+    font-family: 'source-sans-bold';
+    src: url('../fonts/SourceSans3-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'stara-bold';
+    src: url('../fonts/Stara-Bold.otf');
+}
+@font-face {
+    font-family: 'stara-medium';
+    src: url('../fonts/Stara-Medium.otf');
+}
+

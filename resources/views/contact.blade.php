@@ -1,7 +1,10 @@
-<?php include_once('./navbar.blade.php');
+@extends('layouts.layout')
+
+@section('content')
+
+<?php include_once('./navbar.blade.php'); ?>
 
 require '../../../vendor/autoload.php';
-
 
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
@@ -41,7 +44,6 @@ if (isset($_POST["email"]) && isset($_POST["mess"])) {
         $errorMessage .= 'Message vide.<br>';
     }
 
-
     if (empty($errorMessage)) {
         $mail = new PHPMailer(true);
         try {
@@ -72,17 +74,12 @@ if (isset($_POST["email"]) && isset($_POST["mess"])) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/contact.css">
     <title>Contact</title>
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    <script src="./js/contact.js" defer></script> <!-- Inclure le fichier JS externe -->
+    <link rel="stylesheet" href="./style/contact.css">
+    <script src="./js/contact.js" defer></script>
 </head>
 
 <body x-data="contactForm()">
@@ -92,46 +89,37 @@ if (isset($_POST["email"]) && isset($_POST["mess"])) {
     </div>
 
     <form id="section-formulaire" @submit.prevent="submitForm" method="post">
-        <p id="description">Polymedia est à votre service ! <br> Contactez nous pour toute demande d'information ou
-            d'aide</p>
+        <p id="description">Polymedia est à votre service ! <br> Contactez nous pour toute demande d'information ou d'aide</p>
         <section id="champs">
             <div id="nom">
                 <p id="titre-nom" class="titre">Nom</p>
                 <div id="inputs-nom" class="inputs">
-                    <input id="input-prenom" class="input-half" type="text" placeholder="Prénom" x-model="prenom"
-                        name="prenom">
+                    <input id="input-prenom" class="input-half" type="text" placeholder="Prénom" x-model="prenom" name="prenom">
                     <input id="input-nom" class="input-half" type="text" placeholder="Nom" x-model="nom" name="nom">
                 </div>
             </div>
             <div id="adresse">
                 <p id="titre-adresse" class="titre">Adresse</p>
                 <div id="inputs-adresse" class="inputs">
-                    <input type="text" id="input-adresse" class="input-full" placeholder="Adresse" x-model="adresse"
-                        name="adresse">
+                    <input type="text" id="input-adresse" class="input-full" placeholder="Adresse" x-model="adresse" name="adresse">
                     <div id="sous-adresse">
-                        <input type="text" id="input-ville" class="input-tier" placeholder="Ville" x-model="ville"
-                            name="ville">
-                        <input type="text" id="input-codepostal" class="input-tier" placeholder="Code postal"
-                            x-model="codepostal" name="codepostal">
-                        <input type="text" id="input-complement" class="input-tier" placeholder="Complément"
-                            x-model="complement" name="complement">
+                        <input type="text" id="input-ville" class="input-tier" placeholder="Ville" x-model="ville" name="ville">
+                        <input type="text" id="input-codepostal" class="input-tier" placeholder="Code postal" x-model="codepostal" name="codepostal">
+                        <input type="text" id="input-complement" class="input-tier" placeholder="Complément" x-model="complement" name="complement">
                     </div>
                 </div>
             </div>
             <div id="contact">
                 <p id="titre-contact" class="titre">Contact</p>
                 <div id="inputs-contact" class="inputs">
-                    <input type="email" class="input-half" name="email" id="input-email" placeholder="Email"
-                        x-model="email">
-                    <input type="number" class="input-half" id="input-telephone" name="telephone"
-                        placeholder="Téléphone" x-model="telephone">
+                    <input type="email" class="input-half" name="email" id="input-email" placeholder="Email" x-model="email">
+                    <input type="number" class="input-half" id="input-telephone" name="telephone" placeholder="Téléphone" x-model="telephone">
                 </div>
             </div>
             <div id="textbox">
                 <p id="titre-contact" class="titre">Question</p>
                 <div id="inputs-question" class="inputs">
-                    <textarea class="input-full" name="question" id="input-question"
-                        placeholder="Ecrivez votre question ici" x-model="question" name="mess"></textarea>
+                    <textarea class="input-full" name="question" id="input-question" placeholder="Ecrivez votre question ici" x-model="question" name="mess"></textarea>
                 </div>
             </div>
             <div id="newsletter">
@@ -145,5 +133,5 @@ if (isset($_POST["email"]) && isset($_POST["mess"])) {
 
 </html>
 
-
+@endsection('content')
 <?php include_once('footer.blade.php'); ?>
