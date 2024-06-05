@@ -6,22 +6,23 @@
     --background-color: #010423; 
 }
 
+
 @font-face {
     font-family: 'stara'; 
-    src: url('../../resources/fonts/Stara-Black.otf');
+    src: url('../fonts/SourceSans3-Black.ttf');
 }
 
 @font-face {
     font-family: 'source-sans-bold';
-    src: url('../../resources/fonts/SourceSans3-Bold.ttf');
+    src: url('../fonts/SourceSans3-Bold.ttf');
 }
 
 @font-face {
     font-family: 'stara-bold';
-    src: url('../../resources/fonts/Stara-Bold.otf');
+    src: url('../fonts/Stara-Bold.otf');
 }
 @font-face {
     font-family: 'stara-medium';
-    src: url('../../resources/fonts/Stara-Medium.otf');
-
+    src: url('../fonts/Stara-Medium.otf');
 }
+

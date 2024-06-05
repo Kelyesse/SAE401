@@ -14,11 +14,11 @@
 
     <header id="barnav" x-data="{ menuOpen: false, delay: 200 }">
         <div id="navbar">
-            <a href="./index.html" id="logo_desktop">POLYMEDIA</a>
+            <a href="./" id="logo_desktop">POLYMEDIA</a>
             <div id="rubriques">
-                <a href="./catalogue.html" id="rubrique_catalogue">Catalogue</a>
-                <a href="./catalogue.html" id="rubrique_catalogue">Contact</a>
-                <a href=""><img src="./storage/compte.svg" alt="Compte" id="icone_compte" /></a>
+                <a href="/catalogue" id="rubrique_catalogue">Catalogue</a>
+                <a href="/contact" id="rubrique_catalogue">Contact</a>
+                <a href="/compte"><img src="./storage/compte.svg" alt="Compte" id="icone_compte" /></a>
             </div>
             <img src="./storage/menu.png" alt="Menu" id="menu_burger" @click="menuOpen = !menuOpen" />
         </div>
@@ -35,15 +35,15 @@
 
     <footer id="footer-desktop">
     <div id="footer-logo-container">
-        <a id="footer-logo" href="index.php">POLYMEDIA</a>
+        <a id="footer-logo" href="/">POLYMEDIA</a>
     </div>
     <img id="separation-line" src="./storage/line.svg" alt="">
     <div id="anchorList">
         <ul>
             <h2 style="margin-bottom:20px; color:#fff; font-family:'stara-bold'">Navigation</h2>
-            <li><a class="rubriques-footer" href="">Accueil</a></li>
-            <li><a class="rubriques-footer" href="">Catalogue</a></li>
-            <li><a class="rubriques-footer" href="">Contact</a></li>
+            <li><a class="rubriques-footer" href="/">Accueil</a></li>
+            <li><a class="rubriques-footer" href="/catalogue">Catalogue</a></li>
+            <li><a class="rubriques-footer" href="/contact">Contact</a></li>
         </ul>
     </div>
     <div id="footer-contacts">
