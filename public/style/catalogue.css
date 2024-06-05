@@ -3,7 +3,7 @@
 
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'stara';
     margin: 0;
     padding: 0;
 }
@@ -14,17 +14,22 @@ body {
     padding: 20px;
 }
 
+.search-section{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px 0px;
+}
+
 .page-title {
-    font-size: 2.5rem;
+    font-size: 32px;
     font-weight: bold;
-    margin-top: 20px;
 }
 
 .title-underline {
-    width: 80px;
-    height: 4px;
+    width: 120px;
+    height: 2px;
     background-color: var(--primary-color);
-    margin-bottom: 20px;
 }
 
 .book-list {
@@ -34,9 +39,12 @@ body {
 }
 
 .book-item {
-    flex: 1 1 200px; 
+    
     margin: 20px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .book-title {
@@ -51,62 +59,47 @@ body {
     margin-bottom: 10px;
 }
 
-/* Book Image Styles */
-img {
+
+.book-img {
     width: 200px;
     height: 300px;
     object-fit: cover;
     border-radius: 10px;
 }
 
-/* Filter Tags Styles */
-.filter-tags {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+.filter-icon {
+    width: 30px;
+    height: 30px;
 }
 
-.filter-tag {
-    background-color: #f1f1f1;
-    padding: 5px 10px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.filter-tag img {
-    width: 16px;
-    height: 16px;
-    margin-left: 5px;
-}
-
-/* Search Bar Styles */
 .search-bar {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 20px;
 }
 
 .search-bar input {
+    width: 200px;
+    height: 18px;
     flex-grow: 1;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 20px;
+    border-radius: 20px 0px 0px 20px;
 }
 
-.search-bar button {
-    background-color: #d32f2f;
+.search-bar .search-button {
+    background-color: var(--black-color);
     border: none;
-    padding: 10px;
-    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border-radius: 0% 50% 50% 0%;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: -15px;
 }
 
-.search-bar button img {
+.search-bar .search-button img {
     width: 20px;
     height: 20px;
 }

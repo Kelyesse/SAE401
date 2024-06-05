@@ -16,8 +16,8 @@ class CreateNoteTable extends Migration
         Schema::create('note', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_utilisateur');
-            $table->unsignedBigInteger('id_livre');
-            $table->unsignedBigInteger('id_dvd');
+            $table->unsignedBigInteger('id_livre')->nullable();
+            $table->unsignedBigInteger('id_dvd')->nullable();
 
             $table->enum('type_ressource', ['livre', 'dvd']);
             $table->decimal('note', 3, 1);
