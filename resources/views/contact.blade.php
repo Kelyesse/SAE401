@@ -1,5 +1,7 @@
 <?php include_once('./navbar.blade.php');
 
+require '../../../vendor/autoload.php';
+
 
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
