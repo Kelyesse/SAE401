@@ -2,7 +2,6 @@
 
 @section('content')
 
-<?php include_once('./navbar.blade.php'); ?>
 
 require '../../../vendor/autoload.php';
 
@@ -134,4 +133,3 @@ if (isset($_POST["email"]) && isset($_POST["mess"])) {
 </html>
 
 @endsection('content')
-<?php include_once('footer.blade.php'); ?>
