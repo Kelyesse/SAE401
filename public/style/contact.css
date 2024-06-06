@@ -81,6 +81,8 @@ input[type=text], input[type=number], input[type=email], textarea {
 #input-question {
     height: 100px;
     margin-top: 20px;
+    padding: 10px;
+    resize:none
 }
 
 #newsletter {

@@ -37,7 +37,7 @@
     <div id="footer-logo-container">
         <a id="footer-logo" href="/">POLYMEDIA</a>
     </div>
-    <img id="separation-line" src="./storage/line.svg" alt="">
+    <div class="separation-line" alt=""> </div>
     <div id="anchorList">
         <ul>
             <h2 style="margin-bottom:20px; color:#fff; font-family:'stara-bold'">Navigation</h2>
