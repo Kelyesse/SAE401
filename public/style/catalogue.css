@@ -80,7 +80,7 @@ body {
 
 .search-bar input {
     width: 200px;
-    height: 18px;
+    height: 40px;
     flex-grow: 1;
     padding: 10px;
     border: 1px solid #ccc;

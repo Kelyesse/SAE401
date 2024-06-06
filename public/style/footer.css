@@ -135,16 +135,12 @@
         color: #fff;
         text-decoration: none;
         font-family: "stara-bold";
+        font-size: 18px;
     }
 
     li {
         list-style-type: none;
         margin-bottom: 5px;
-    }
-
-    #footer-logo {
-        font-family: 'stara';
-        font-size: 32px;
     }
 
     #footer-contacts {
@@ -165,6 +161,12 @@
         width: 35px;
     }
 
+    #anchorList ul {
+        display:flex;
+        justify-content:space-between;
+        width:280px;
+    }
+
     #footer {
         position: relative;
         display: flex;
@@ -180,7 +182,8 @@
         align-items: center;
         justify-content: center;
         position: relative;
-        width: 250px;
+        width: 280px;
+        gap: 10px;
     }
 
     #icone-langue {

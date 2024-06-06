@@ -1,5 +1,3 @@
-// getAllBooks.js
-
 document.addEventListener("alpine:init", () => {
     Alpine.data("books", () => ({
         books: [],
