@@ -12,6 +12,8 @@
         display: none;
     }
 
+    a{ }
+
     footer {
         display: flex;
         justify-content: space-between;
@@ -28,6 +30,10 @@
         font-size: 16px;
     }
 
+    .rubriques-footer:hover {
+        color: var(--secondary-color);
+    }
+
     li {
         list-style-type: none;
         margin-bottom: 5px;
@@ -42,6 +48,9 @@
     #footer-logo {
         font-family: 'stara';
         font-size: 32px;
+        color: #fff;
+        text-decoration: none;
+        font-family: "stara-bold";
     }
 
     #footer-contacts {
@@ -114,6 +123,10 @@
         font-family: 'stara-bold';
         font-size: 14px;
     }
+
+    .langue-link:hover {
+        color: var(--secondary-color);
+    }
 }
 
 @media screen and (max-width:1000px) {
@@ -131,14 +144,15 @@
         background-color: #960f26;
     }
 
-    a {
+    footer a {
         color: #fff;
         text-decoration: none;
         font-family: "stara-bold";
         font-size: 18px;
     }
+    
 
-    li {
+    footer li {
         list-style-type: none;
         margin-bottom: 5px;
     }

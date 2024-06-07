@@ -20,4 +20,4 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-Route::get('/api/books', [CatalogueController::class, 'getAllBooks']);
+Route::get('/api/ressources', [CatalogueController::class, 'getAllRessources']);

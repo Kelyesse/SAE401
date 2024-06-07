@@ -16,8 +16,8 @@
         <div id="navbar">
             <a href="/" id="logo_desktop">POLYMEDIA</a>
             <div id="rubriques">
-                <a href="/catalogue" id="rubrique_catalogue">Catalogue</a>
-                <a href="/contact" id="rubrique_catalogue">Contact</a>
+                <a href="/catalogue" id="rubrique_web">Catalogue</a>
+                <a href="/contact" id="rubrique_web">Contact</a>
                 <a href="/compte"><img src="./storage/compte.svg" alt="Compte" id="icone_compte" /></a>
             </div>
             <img src="./storage/menu.png" alt="Menu" id="menu_burger" @click="menuOpen = !menuOpen" />

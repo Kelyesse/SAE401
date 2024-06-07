@@ -16,9 +16,9 @@ body {
 
 .search-section{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    margin: 20px 0px;
+    margin: 20px 0px 50px;
 }
 
 .page-title {
@@ -32,40 +32,51 @@ body {
     background-color: var(--primary-color);
 }
 
-.book-list {
+.ressource-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    justify-content: center;
+    gap: 50px;
 }
 
-.book-item {
-    
+.ressource-item {
     margin: 20px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: var(--black-color);
+    text-decoration: none;
+    cursor: pointer;
 }
 
-.book-title {
-    font-size: 1.2rem;
+.ressource-title {
+    font-size: 14px;
     font-weight: bold;
     margin-top: 10px;
+    width: 150px;
 }
 
-.book-year {
-    color: gray;
-    font-size: 1rem;
+.ressource-year {
+    font-size: 14px;
     margin-bottom: 10px;
+    opacity: 0.4;
 }
 
 
-.book-img {
+.ressource-img {
     width: 200px;
     height: 300px;
     object-fit: cover;
     border-radius: 10px;
 }
+
+.ressource-img:hover {
+    transition: all 0.3s;
+    box-shadow: 0 3px 10px var(--secondary-color);
+
+}
+
 
 .filter-icon {
     width: 30px;
@@ -79,7 +90,7 @@ body {
 }
 
 .search-bar input {
-    width: 200px;
+    width: 250px;
     height: 40px;
     flex-grow: 1;
     padding: 10px;

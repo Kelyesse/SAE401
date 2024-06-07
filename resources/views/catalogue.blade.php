@@ -5,7 +5,7 @@
 <head>
     <title>Catalogue</title>
     <link rel="stylesheet" href="./style/catalogue.css">
-    <script src="./js/getAllBooks.js"></script>
+    <script src="./js/getAllRessources.js"></script>
 </head>
 
 <main class="container">
@@ -23,14 +23,14 @@
     </div>
 
 
-    <div class="book-list" x-data="books" x-init="fetchBooks">
-        <template x-for="book in books">
-            <template x-if="book.imgUrl">
-                <div class="book-item">
-                    <img class="book-img" :src="'./storage/' + book . imgUrl" alt="Image du livre">
-                    <div class="book-title" x-text="book.titre"></div>
-                    <div class="book-year" x-text="book.annee"></div>
-                </div>
+    <div class="ressource-list" x-data="ressources" x-init="fetchAllRessources">
+        <template x-for="ressource in ressources">
+            <template x-if="ressource.imgUrl">
+                <a :href="'./ressource?id=' + ressource . id" class="ressource-item">
+                    <img class="ressource-img" :src="'./storage/' + ressource . imgUrl" alt="Image du livre">
+                    <div class="ressource-title" x-text="ressource.titre"></div>
+                    <div class="ressource-year" x-text="ressource.annee"></div>
+                </a>
             </template>
         </template>
     </div>
