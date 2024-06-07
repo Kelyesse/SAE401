@@ -23,4 +23,10 @@ class Realisateur extends Model
     {
         return $this->belongsTo(Pays::class, 'id_nationalite');
     }
+
+    public function realisateur()
+    {
+        return $this->belongsTo(Realisateur::class, 'id_realisateur', 'id');
+    }
+
 }
