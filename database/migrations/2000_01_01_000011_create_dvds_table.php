@@ -27,6 +27,7 @@ class CreateDvdsTable extends Migration
             $table->integer('duree');
             $table->string('sous_titres');
             $table->string('imgUrl');
+            $table->text('description');
             $table->timestamps();
 
             // Clés étrangères
