@@ -34,3 +34,6 @@ Route::get('/api/ressources', [CatalogueController::class, 'getAllRessources']);
 
 Route::get('/api/ressource', [RessourceController::class, 'getRessource']);
 
+Route::get('/api/ratings', [RessourceController::class, 'getRatings']);
+
+

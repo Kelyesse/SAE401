@@ -8,6 +8,7 @@ use App\Models\Livre;
 use App\Models\Dvd;
 use App\Models\Auteur;
 use App\Models\Realisateur;
+use App\Models\Note;
 
 class RessourceController extends Controller
 {
@@ -38,6 +39,23 @@ class RessourceController extends Controller
         }
 
         return response()->json($ressource);
+    }
+
+    public function getRatings(Request $request)
+    {
+        $isbn = $request->query('isbn');
+        $ian = $request->query('ian');
+        $id = $request->query('id');
+
+
+        if ($isbn) {
+            $avis = Note::where('id_livre', $id)->first();
+        } else {
+            $avis = Note::where('id_dvd', $id)->first();
+
+        }
+        // Passer la ressource et les avis à la vue
+        return response()->json($avis);
     }
 }
 

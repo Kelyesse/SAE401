@@ -10,8 +10,6 @@
     <title>Dune 2 Review</title>
     <script src="./js/getRessource.js"></script>
     <link rel="stylesheet" href="./style/ressource.css">
-
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
 <body>
 
@@ -49,21 +47,11 @@
                 <button @click="submitReview()">Envoyer</button>
             </div>
 
-            <div class="reviews" style="background-color:#161b2a">
-                <h2>Avis (<span x-text="reviews.length"></span>)</h2>
-                <template x-for="review in reviews" :key="review.id">
-                    <div class="review">
-                        <h3 x-text="review.name"></h3>
-                        <div class="stars">
-                            <template x-for="star in 5">
-                                <span :class="{'filled': star <= review.rating}">&#9733;</span>
-                            </template>
-                        </div>
-                        <p x-text="review.text"></p>
-                    </div>
-                </template>
+            <div x-data="ressource" x-init="fetchRatings">
+                <h2>Avis</h2>
+                <div class="avis">
+                </div>
             </div>
-        <script src="script.js"></script>
     </div>
         
 </body>
