@@ -14,7 +14,7 @@
 
     <main>
         <section class="hero">
-            <img src="../img/img_background.webp" alt="Background Image" class="hero__background-image">
+            <img src="../img/background.jpg" alt="Background Image" class="hero__background-image">
             <div class="hero__content">
                 <h1 class="hero__title">Livres et DVDs accessibles pour tous.</h1>
                 <h2 class="hero__description">Accédez à notre catalogue complet</h2>
