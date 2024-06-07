@@ -8,35 +8,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dune 2 Review</title>
+    <script src="./js/getRessource.js"></script>
     <link rel="stylesheet" href="./style/ressource.css">
 
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
 <body>
-    <div id="ctn-ressource" class="container" x-data="reviewForm()">
-        <div class="movie-info">
-            <img id="img-ressource" src="./storage/dune.jpg" alt="Dune 2">
-            <div class="details">
-                <h1 id="titre-ressource">Dune 2</h1>
-                <div id="section-auteur">
-                    <img id="icone-auteur" src="./storage/icone-auteur.svg" alt="">
-                    <p id="auteur-ressource">Denis Villeneuve</p>
-                </div>
-                <div style="width:350px; background-color:#010423; height:2px; margin:20px 0;"></div>
-                <p id="type-ressource">Film - 2024</p>
-                <p id="description-ressource">
-                    Paul Atreides va rallier Chani et aux Fremen tout en préparant sa revanche contre ceux qui ont détruit sa famille. 
-                    Au vu de la vie de l'amour de sa vie et en choisissant d'embrasser l'amour de sa vie et le destin de l'univers, il devra
-                    éviter un terrible futur que lui seul peut prédire.
-                </p>
-                <div id="disponible">
-                    <div id="icone-disponible"></div>
-                    <p class="available-text">Cette ressource est disponible</p>
-                </div>
-                <button class="btn-reserve">Réserver</button>
+
+<div id="ctn-ressource" class="container" x-data="ressource" x-init="fetchRessource">
+    <div class="movie-info">
+        <img :src="'./storage/' + ressource.imgUrl" :alt="ressource.titre">
+        <div class="details">
+            <h1 id="titre-ressource" x-text="ressource.titre"></h1>
+            <div id="section-auteur">
+                <img id="icone-auteur" src="./storage/icone-auteur.svg" alt="">
+                <p id="auteur-ressource" x-text="ressource.isbn ? ressource.auteur_nom_complet : ressource.realisateur_nom_complet"></p>
+
             </div>
+            <div style="width:350px; background-color:#010423; height:2px; margin:20px 0;"></div>
+            <p id="type-ressource" x-text="(ressource.isbn ? 'Livre'+' - '+ressource.annee : 'Film' +' - '+ressource.annee)"></p>
+            <p id="description-ressource" x-text="ressource.description"></p>
+            <div id="disponible">
+                <div id="icone-disponible" x-bind:style="{ backgroundColor: ressource.statut === 'disponible' ? 'green' : 'red' }"></div>
+                <p class="available-text" x-text="'Cette ressource est ' + ressource.statut"></p>
+            </div>
+            <button class="btn-reserve">Réserver</button>
         </div>
     </div>
+</div>
+
+
+
 
     <img src="./storage/wave.png" alt="" style="width:100%">
 

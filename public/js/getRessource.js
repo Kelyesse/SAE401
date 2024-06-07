@@ -3,13 +3,17 @@ document.addEventListener("alpine:init", () => {
         ressource: [],
         async fetchRessource() {
             try {
-                const response = await fetch("/api/books");
+                const params = new URLSearchParams(window.location.search);
+                const isbn = params.get('isbn');
+                const ian = params.get('ian');
+                const queryParam = isbn ? `isbn=${isbn}` : `ian=${ian}`
+                const response = await fetch(`/api/ressource?${queryParam}`);
                 const data = await response.json();
                 console.log(data);
-                this.books = data;
+                this.ressource = data;
             } catch (error) {
                 console.error(
-                    "Une erreur s'est produite lors de la récupération des livres:",
+                    "Une erreur s'est produite lors de la récupération de la ressource",
                     error
                 );
             }

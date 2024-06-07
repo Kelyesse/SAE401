@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CatalogueController;
+use App\Http\Controllers\RessourceController;
+
 
 Route::get('/', function () {
     return view('index');
@@ -19,9 +21,10 @@ Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/ressources', function () {
+Route::get('/ressource', function () {
     return view('ressource');
 });
+
 Route::get('/contact', function () {
     return view('contact');
 });
@@ -30,3 +33,4 @@ Route::get('/api/ressources', [CatalogueController::class, 'getAllRessources']);
 
 
 Route::get('/api/ressource', [RessourceController::class, 'getRessource']);
+
