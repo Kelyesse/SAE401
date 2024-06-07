@@ -30,6 +30,7 @@ Route::get('/contact', function () {
 });
 
 Route::get('/api/ressources', [CatalogueController::class, 'getAllRessources']);
+Route::get('/api/ressources/search', [CatalogueController::class, 'searchRessources']);
 
 
 Route::get('/api/ressource', [RessourceController::class, 'getRessource']);
