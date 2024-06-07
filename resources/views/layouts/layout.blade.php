@@ -7,25 +7,25 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href="./style/navbar.css" />
     <link rel="stylesheet" href="./style/footer.css" />
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js"></script>
 </head>
 
 <body>
 
-    <header id="barnav" x-data="{ menuOpen: false, delay: 200 }">
+<header id="barnav" x-data="{ menuOpen: false }">
         <div id="navbar">
-            <a href="./" id="logo_desktop">POLYMEDIA</a>
+            <a href="/" id="logo_desktop">POLYMEDIA</a>
             <div id="rubriques">
-                <a href="/catalogue" id="rubrique_catalogue">Catalogue</a>
-                <a href="/contact" id="rubrique_catalogue">Contact</a>
+                <a href="/catalogue" id="rubrique_web">Catalogue</a>
+                <a href="/contact" id="rubrique_web">Contact</a>
                 <a href="/compte"><img src="./storage/compte.svg" alt="Compte" id="icone_compte" /></a>
             </div>
             <img src="./storage/menu.png" alt="Menu" id="menu_burger" @click="menuOpen = !menuOpen" />
         </div>
-        <div id="rubriques_mobile" x-show="menuOpen" @click.away="menuOpen = false" x-transition>
-            <a href="#" class="rubrique_mobile" x-show.transition="menuOpen" x-transition.delay="200ms">Catalogue</a>
-            <a href="#" class="rubrique_mobile" x-show.transition="menuOpen" x-transition.delay="400ms">Contact</a>
-            <a href="#" class="rubrique_mobile" x-show.transition="menuOpen" x-transition.delay="600ms">Compte</a>
+        <div id="rubriques_mobile" x-show="menuOpen" @click.away="menuOpen = false">
+            <a href="/catalogue" class="rubrique_mobile">Catalogue</a>
+            <a href="/contact" class="rubrique_mobile">Contact</a>
+            <a href="/compte" class="rubrique_mobile">Compte</a>
         </div>
     </header>
 
@@ -37,7 +37,7 @@
     <div id="footer-logo-container">
         <a id="footer-logo" href="/">POLYMEDIA</a>
     </div>
-    <img id="separation-line" src="./storage/line.svg" alt="">
+    <div class="separation-line" alt=""> </div>
     <div id="anchorList">
         <ul>
             <h2 style="margin-bottom:20px; color:#fff; font-family:'stara-bold'">Navigation</h2>
@@ -78,10 +78,10 @@
         </div>
     </div>
     <div id="anchorList">
-        <ul style="display:flex;justify-content:space-between;width:250px;">
-            <li>Accueil</li>
-            <li>Catalogue</li>
-            <li>Contact</li>
+        <ul>
+            <li><a class="rubriques-footer" href="/">Accueil</a></li>
+            <li><a class="rubriques-footer" href="/catalogue">Catalogue</a></li>
+            <li><a class="rubriques-footer" href="/contact">Contact</a></li>
         </ul>
     </div>
     <div id="iconeLangueFooter" @click="open = !open" x-data="{ open: false }" x-cloak>
