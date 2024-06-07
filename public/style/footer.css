@@ -12,12 +12,14 @@
         display: none;
     }
 
+    a{ }
+
     footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0px 180px;
-        height: 250px;
+        padding: 0px 120px;
+        height: 200px;
         background-color: #960f26;
     }
 
@@ -25,7 +27,11 @@
         color: #fff;
         text-decoration: none;
         font-family: "stara-bold";
-        font-size: 18px;
+        font-size: 16px;
+    }
+
+    .rubriques-footer:hover {
+        color: var(--secondary-color);
     }
 
     li {
@@ -33,9 +39,18 @@
         margin-bottom: 5px;
     }
 
+    .separation-line{
+        width: 2px;
+        height: 120px;
+        background-color: #fff;
+    }
+
     #footer-logo {
         font-family: 'stara';
-        font-size: 36px;
+        font-size: 32px;
+        color: #fff;
+        text-decoration: none;
+        font-family: "stara-bold";
     }
 
     #footer-contacts {
@@ -54,7 +69,7 @@
     }
 
     .footer-icone {
-        width: 50px;
+        width: 40px;
     }
 
     #footer {
@@ -106,7 +121,11 @@
         color: #fff;
         text-decoration: none;
         font-family: 'stara-bold';
-        font-size: 16px;
+        font-size: 14px;
+    }
+
+    .langue-link:hover {
+        color: var(--secondary-color);
     }
 }
 
@@ -125,20 +144,17 @@
         background-color: #960f26;
     }
 
-    a {
+    footer a {
         color: #fff;
         text-decoration: none;
         font-family: "stara-bold";
+        font-size: 18px;
     }
+    
 
-    li {
+    footer li {
         list-style-type: none;
         margin-bottom: 5px;
-    }
-
-    #footer-logo {
-        font-family: 'stara';
-        font-size: 36px;
     }
 
     #footer-contacts {
@@ -159,6 +175,12 @@
         width: 35px;
     }
 
+    #anchorList ul {
+        display:flex;
+        justify-content:space-between;
+        width:280px;
+    }
+
     #footer {
         position: relative;
         display: flex;
@@ -174,7 +196,8 @@
         align-items: center;
         justify-content: center;
         position: relative;
-        width: 250px;
+        width: 280px;
+        gap: 10px;
     }
 
     #icone-langue {
@@ -202,7 +225,7 @@
         color: #fff;
         text-decoration: none;
         font-family: 'stara-bold';
-        font-size: 16px;
+        font-size: 14px;
     }
     
     .icon-moved {

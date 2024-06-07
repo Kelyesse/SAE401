@@ -3,13 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Livre;
+use App\Models\Dvd;
+
 
 class CatalogueController extends Controller
 {
-    public function getAllBooks()
+    public function getAllRessources()
     {
         $books = Livre::all();
-        return response()->json($books);
+        $movies = Dvd::all();
+
+        $resources = [
+            ...$books,
+            ...$movies,
+        ];
+        return response()->json($resources);
     }
 }
 

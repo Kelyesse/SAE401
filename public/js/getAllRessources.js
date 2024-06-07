@@ -1,14 +1,12 @@
-// getAllBooks.js
-
 document.addEventListener("alpine:init", () => {
-    Alpine.data("books", () => ({
-        books: [],
-        async fetchBooks() {
+    Alpine.data("ressources", () => ({
+        ressources: [],
+        async fetchAllRessources() {
             try {
-                const response = await fetch("/api/books");
+                const response = await fetch("/api/ressources");
                 const data = await response.json();
                 console.log(data);
-                this.books = data;
+                this.ressources = data;
             } catch (error) {
                 console.error(
                     "Une erreur s'est produite lors de la récupération des livres:",

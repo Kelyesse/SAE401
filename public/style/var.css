@@ -9,12 +9,17 @@
 
 @font-face {
     font-family: 'stara'; 
-    src: url('../fonts/SourceSans3-Black.ttf');
+    src: url('../fonts/Stara-Black.otf');
 }
 
 @font-face {
     font-family: 'source-sans-bold';
     src: url('../fonts/SourceSans3-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'source-sans-black';
+    src: url('../fonts/SourceSans3-Black.ttf');
 }
 
 @font-face {
