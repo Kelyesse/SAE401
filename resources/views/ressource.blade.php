@@ -1,4 +1,6 @@
+@extends('layouts.layout')
 
+@section('content')
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dune 2 Review</title>
     <link rel="stylesheet" href="./style/ressource.css">
+
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
 <body>
@@ -35,7 +38,7 @@
         </div>
     </div>
 
-    <img src="../img/wave.png" alt="" style="width:100%">
+    <img src="./storage/wave.png" alt="" style="width:100%">
 
     <div id="section-avis">
         <div class="review-form">
@@ -63,3 +66,5 @@
         
 </body>
 </html>
+
+@endsection('content')

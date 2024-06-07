@@ -25,3 +25,5 @@ Route::get('/contact', function () {
 });
 
 Route::get('/api/books', [CatalogueController::class, 'getAllBooks']);
+
+Route::get('/api/ressource', [RessourceController::class, 'getRessource']);
