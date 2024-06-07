@@ -19,6 +19,7 @@ body {
     justify-content: space-between;
     align-items: center;
     margin: 20px 0px 50px;
+    position: relative;
 }
 
 .page-title {
@@ -81,8 +82,111 @@ body {
 .filter-icon {
     width: 30px;
     height: 30px;
+    cursor: pointer;
 }
 
+.filter-container{
+    position: absolute;
+    padding: 30px 20px;
+    z-index: 100;
+    right: 0;
+    top: 60px;
+    width: 600px;
+    height: 250px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: space-around;
+}
+
+.generic-filters{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.specific-filters{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.book-specific, .movie-specific{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.filter-title{
+    font-size: 18px;
+}
+
+.filter-subtitle{
+    font-size: 14px;
+}
+.filter-container .close-icon{
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.filter-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.filter-options-specific{
+    display: flex;
+    gap: 20px;
+}
+
+.filter-option{
+    display: flex;
+    justify-content: space-between;
+    color: var(--primary-color);
+    font-size: 14px;
+}
+
+.filter-option select{
+    cursor: pointer;
+}
+
+.filter-option input, .filter-option select{
+    width: 80px;
+    height: 40px;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid var(--black-color);
+    border-radius: 5px;
+}
+
+.filter-option input:hover, .filter-option select:hover{
+    border-color: var(--secondary-color);
+}
+
+.filter-option input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.filter-option input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.filter-option select, .filter-option input[type=text]{
+    width: 140px;
+    color: var(--primary-color);
+}
+
+
+.filter-option input::placeholder{
+    color: var(--primary-color);
+}
 .search-bar {
     display: flex;
     align-items: center;
@@ -107,9 +211,20 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: -15px;
+    margin-left: -10px;
 }
 
+.search-bar .input-search-bar{
+    position: relative;
+}
+.clear-icon{
+    position: absolute;
+    right: 5px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
 .search-bar .search-button img {
     width: 20px;
     height: 20px;
