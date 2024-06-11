@@ -125,7 +125,9 @@
         </template>
         <template x-for="[key, value] of Object.entries(filters)" :key="key">
             <template x-if="value">
-                <div class="active-filter" x-text="key === 'isAvailable' ? 'Disponibilité' : key"></div>
+                <div class="active-filter"
+                    x-text="key === 'isAvailable' ? 'Disponibilité' : (key === 'searchQuery' ? 'Recherche' : key)">
+                </div>
             </template>
         </template>
         <img class="clear-icon" src="./storage/clear-icon.png" alt="Clear" @click="clearSearch">
