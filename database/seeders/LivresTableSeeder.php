@@ -23,7 +23,7 @@ class LivresTableSeeder extends Seeder
                 'genre' => 'Fantaisie',
                 'nombre_pages' => 332,
                 'annee' => 1997,
-                'statut' => 'disponible',
+                'statut' => 'indisponible',
                 'id_langue' => 2, // Assuming 'Anglais' has an ID of 2 in the 'langues' table
                 'nombre_exemplaires' => 15,
                 'maison_edition' => 'Penguin Books',
