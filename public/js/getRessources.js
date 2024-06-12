@@ -78,5 +78,25 @@ document.addEventListener("alpine:init", () => {
             }),
                 this.fetchAllRessources();
         },
+        redirectToCatalog() {
+            if (
+                window.location.pathname == "/index" ||
+                window.location.pathname == "/"
+            ) {
+                window.location.href =
+                    "/catalogue?searchQuery=" + this.filters.searchQuery;
+            }
+            return;
+        },
+        init() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get("searchQuery");
+            if (searchQuery) {
+                this.filters.searchQuery = searchQuery;
+                this.fetchFilteredRessources();
+            } else {
+                this.fetchAllRessources();
+            }
+        },
     }));
 });

@@ -8,7 +8,7 @@
     <script src="./js/getRessources.js"></script>
 </head>
 
-<main class="container" x-data="ressources" x-init="fetchAllRessources">
+<main class="container" x-data="ressources">
     <div class="search-section">
         <div class="title">
             <div class="page-title">Catalogue</div>
