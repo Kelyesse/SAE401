@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Livre extends Model
 {
-    protected $table = 'livre';
+    protected $table = 'livres';
 
     protected $primaryKey = 'id';
 
@@ -27,8 +27,9 @@ class Livre extends Model
 
     public function auteur()
     {
-        return $this->belongsTo(Auteur::class, 'id_auteur', 'id_auteur');
+        return $this->belongsTo(Auteur::class, 'id_auteur', 'id');
     }
+
 
 
     public function editeur()
@@ -41,3 +42,6 @@ class Livre extends Model
         return $this->belongsTo(Langue::class, 'id_langue', 'id_langue');
     }
 }
+
+
+

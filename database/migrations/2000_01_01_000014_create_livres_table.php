@@ -27,6 +27,8 @@ class CreateLivresTable extends Migration
             $table->integer('nombre_exemplaires');
             $table->string('maison_edition');
             $table->string('collection');
+            $table->string('imgUrl');
+            $table->text('description');
             $table->timestamps();
 
             // Clés étrangères

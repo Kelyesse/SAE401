@@ -1,22 +1,5 @@
-@font-face {
-    font-family: 'stara-black';
-    src: url(../fonts/Stara-Black.otf);
-}
+@import url('var.css');
 
-@font-face {
-    font-family: 'source-sans-bold';
-    src: url(../fonts/SourceSans3-Bold.ttf);
-}
-
-@font-face {
-    font-family: 'stara-bold';
-    src: url(../fonts/Stara-Bold.otf);
-}
-
-@font-face {
-    font-family: 'stara-medium';
-    src: url(../fonts/Stara-Medium.otf);
-}
 
 #titre {
     padding: 80px;
@@ -52,7 +35,7 @@
 }
 
 .titre {
-    font-family: 'stara-black';
+    font-family: 'stara';
     font-size: 20px;
 }
 
@@ -98,6 +81,8 @@ input[type=text], input[type=number], input[type=email], textarea {
 #input-question {
     height: 100px;
     margin-top: 20px;
+    padding: 10px;
+    resize:none
 }
 
 #newsletter {
