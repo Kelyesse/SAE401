@@ -29,6 +29,12 @@ class Dvd extends Model
         return $this->belongsTo(Realisateur::class, 'id_realisateur');
     }
 
+    public function avis()
+    {
+        return $this->hasMany(Note::class, 'id_dvd', 'id');
+    }
+
+
     // Relation avec les langues du DVD
     public function langues()
     {
@@ -45,5 +51,10 @@ class Dvd extends Model
     public function castings()
     {
         return $this->hasMany(Casting::class, 'id_dvd');
+    }
+
+    public function notes()
+    {
+        return $this->hasMany(Note::class, 'id_dvd', 'id');
     }
 }

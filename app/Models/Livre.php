@@ -21,8 +21,6 @@ class Livre extends Model
         'statut',
         'id_langue',
         'nombre_exemplaires',
-        'maison_edition',
-        'collection',
     ];
 
     public function auteur()
@@ -31,6 +29,10 @@ class Livre extends Model
     }
 
 
+    public function avis()
+{
+    return $this->hasMany(Note::class, 'id_livre', 'id');
+}
 
     public function editeur()
     {
@@ -40,6 +42,10 @@ class Livre extends Model
     public function langue()
     {
         return $this->belongsTo(Langue::class, 'id_langue', 'id');
+    }
+    public function notes()
+    {
+        return $this->hasMany(Note::class, 'id_livre', 'id');
     }
 }
 

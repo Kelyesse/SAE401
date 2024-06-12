@@ -36,6 +36,7 @@
                     class="text-blue-500 underline">S'inscrire</button></p>
         </div>
 
+
         <!-- Formulaire d'inscription -->
         <div x-show="showRegister" style="display: none;">
             <h1>Se créer un compte</h1>
@@ -62,4 +63,16 @@
         </div>
     </div>
 </div>
+
+<script>
+    const logout = async() => {
+        const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    };
+        return await fetch('/logout',options);
+    }
+</script>
 @endsection
