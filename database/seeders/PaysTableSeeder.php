@@ -17,11 +17,11 @@ class PaysTableSeeder extends Seeder
         $pays = [
             ['nom' => 'France'],
             ['nom' => 'United States'],
+            ['nom' => 'United Kingdom'],
             ['nom' => 'Germany'],
-            // Add more countries as needed
+            ['nom' => 'Italy'],
         ];
 
-        // Insert data into the 'pays' table
         DB::table('pays')->insert($pays);
     }
 }

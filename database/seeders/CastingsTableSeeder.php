@@ -16,28 +16,48 @@ class CastingsTableSeeder extends Seeder
     {
         $castings = [
             [
-                'id_acteur' => 1, // Assuming 'Gérard Depardieu' has an ID of 1 in the 'acteurs' table
-                'id_dvd' => 1,    // Assuming this DVD exists with ID 1
+                'id_acteur' => 1,
+                'id_dvd' => 1,
             ],
             [
-                'id_acteur' => 2, // Assuming 'Juliette Binoche' has an ID of 2 in the 'acteurs' table
-                'id_dvd' => 1,    // Assuming this DVD exists with ID 1
+                'id_acteur' => 2,
+                'id_dvd' => 1,
             ],
             [
-                'id_acteur' => 3, // Assuming 'Jean Reno' has an ID of 3 in the 'acteurs' table
-                'id_dvd' => 2,    // Assuming this DVD exists with ID 2
+                'id_acteur' => 3,
+                'id_dvd' => 2,
             ],
             [
-                'id_acteur' => 4, // Assuming 'Jean Dujardin' has an ID of 4 in the 'acteurs' table
-                'id_dvd' => 3,    // Assuming this DVD exists with ID 3
+                'id_acteur' => 4,
+                'id_dvd' => 3,
             ],
             [
-                'id_acteur' => 5, // Assuming 'Isabelle Huppert' has an ID of 5 in the 'acteurs' table
-                'id_dvd' => 4,    // Assuming this DVD exists with ID 4
+                'id_acteur' => 5,
+                'id_dvd' => 4,
+            ],
+            [
+                'id_acteur' => 6,
+                'id_dvd' => 2,
+            ],
+            [
+                'id_acteur' => 7,
+                'id_dvd' => 3,
+            ],
+            [
+                'id_acteur' => 8,
+                'id_dvd' => 4,
+            ],
+            [
+                'id_acteur' => 9,
+                'id_dvd' => 5,
+            ],
+            [
+                'id_acteur' => 10,
+                'id_dvd' => 6,
             ],
         ];
 
-        // Insert data into the 'castings' table
+        // Insérer les données dans la table 'castings'
         DB::table('castings')->insert($castings);
     }
 }

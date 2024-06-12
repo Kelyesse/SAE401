@@ -16,7 +16,7 @@ Route::get('/index', function () {
 
 Route::get('/catalogue', function () {
     return view('catalogue');
-}) ;
+});
 
 //Compte
 Route::get('/compte', function () {
@@ -40,6 +40,14 @@ Route::get('/contact', function () {
 Route::get('/api/ressources', [CatalogueController::class, 'getAllRessources']);
 Route::get('/api/ressources/search', [CatalogueController::class, 'searchRessources']);
 Route::get('/api/ressources/filterOptions', [CatalogueController::class, 'getFilterOptions']);
+
+
+
+
+
+Route::get('/api/ressources/homepage', [CatalogueController::class, 'getHomepageRessources']);
+
+
 
 Route::get('/api/ressource', [RessourceController::class, 'getRessource']);
 

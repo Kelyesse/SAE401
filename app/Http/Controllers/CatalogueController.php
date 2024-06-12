@@ -111,5 +111,36 @@ class CatalogueController extends Controller
         ];
         return response()->json($filterOptions);
     }
+
+    public function getHomepageRessources()
+    {
+        // Fetch the latest resources
+        $newBooks = Livre::orderBy('created_at', 'desc')->take(3)->get();
+        $newMovies = Dvd::orderBy('created_at', 'desc')->take(3)->get();
+
+        // Fetch the resources with the best notes
+        $favoriteBooks = Livre::with('notes')->get()->sortByDesc(function ($book) {
+            return $book->notes->avg('note');
+        })->take(3);
+
+        $favoriteMovies = Dvd::with('notes')->get()->sortByDesc(function ($movie) {
+            return $movie->notes->avg('note');
+        })->take(3);
+
+        // Fetch all books and movies
+        $books = Livre::all();
+        $movies = Dvd::all();
+
+        // Combine all resources into a structured object
+        $resources = [
+            'new_ressources' => $newBooks->concat($newMovies),
+            'favorite_ressources' => $favoriteBooks->concat($favoriteMovies),
+            'books' => $books,
+            'movies' => $movies,
+        ];
+
+        return response()->json($resources);
+    }
+
 }
 
