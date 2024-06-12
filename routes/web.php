@@ -6,8 +6,6 @@ use App\Http\Controllers\RessourceController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
 
-
-
 Route::get('/', function () {
     return view('index');
 });
@@ -43,9 +41,6 @@ Route::get('/api/ressources', [CatalogueController::class, 'getAllRessources']);
 Route::get('/api/ressources/search', [CatalogueController::class, 'searchRessources']);
 Route::get('/api/ressources/filterOptions', [CatalogueController::class, 'getFilterOptions']);
 
-
-
-
 Route::get('/api/ressource', [RessourceController::class, 'getRessource']);
 
 //Contact//
@@ -53,4 +48,17 @@ Route::get('/api/ressource', [RessourceController::class, 'getRessource']);
 Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
 Route::post('/contact', [ContactController::class, 'sendMail'])->name('contact.send');
 
+//Fin-contact//
 
+//Admin//
+
+// Route::get('/admin', [AuthController::class, 'adminDashboard'])->name('admin.dashboard');
+
+Route::get('/admin', [AuthController::class, 'adminDashboard'])->name('admin.dashboard');
+Route::put('/admin/update/{id}', [AuthController::class, 'updateUser'])->name('admin.update');
+Route::delete('/admin/delete/{id}', [AuthController::class, 'deleteUser'])->name('admin.delete');
+
+
+
+
+//Fin-Admin//
