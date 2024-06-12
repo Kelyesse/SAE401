@@ -33,6 +33,10 @@ class Dvd extends Model
     // Relation avec les langues du DVD
     public function langues()
     {
-        return $this->belongsToMany(Langue::class, 'dvdlangues', 'dvd_id', 'langue_id');
+        return $this->belongsToMany(Langue::class, 'dvdlangues', 'id_dvd', 'langue_id');
+    }
+    public function notes()
+    {
+        return $this->hasMany(Note::class, 'id_dvd', 'id');
     }
 }

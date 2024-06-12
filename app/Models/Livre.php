@@ -29,9 +29,6 @@ class Livre extends Model
     {
         return $this->belongsTo(Auteur::class, 'id_auteur', 'id');
     }
-
-
-
     public function editeur()
     {
         return $this->belongsTo(Editeur::class, 'id_editeur', 'id_editeur');
@@ -40,6 +37,10 @@ class Livre extends Model
     public function langue()
     {
         return $this->belongsTo(Langue::class, 'id_langue', 'id_langue');
+    }
+    public function notes()
+    {
+        return $this->hasMany(Note::class, 'id_livre', 'id');
     }
 }
 
