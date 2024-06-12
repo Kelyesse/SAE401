@@ -19,14 +19,14 @@
             <h2 class="hero__description">Accédez à notre catalogue complet</h2>
             <div class="search-bar" x-data="ressources">
                 <div class="input-search-bar">
-                    <input type="text" placeholder="Rechercher..." x-model="searchQuery"
-                        @keydown.enter="fetchFilteredRessources">
-                    <template x-if="searchQuery">
+                    <input type="text" placeholder="Rechercher..." x-model="filters.searchQuery"
+                        @keydown.enter="redirectToCatalog">
+                    <template x-if="filters.searchQuery">
                         <img class="clear-icon" src="./storage/clear-icon.png" alt="Clear" @click="clearSearch">
                     </template>
                 </div>
 
-                <div class="search-button" @click="fetchFilteredRessources">
+                <div class="search-button" @click="redirectToCatalog">
                     <img src="./storage/search-icon.svg" alt="Search">
                 </div>
             </div>

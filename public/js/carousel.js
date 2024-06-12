@@ -10,7 +10,6 @@ document.addEventListener("alpine:init", () => {
             try {
                 const response = await fetch("/api/ressources/homepage");
                 const data = await response.json();
-                console.log(data);
                 this.homepageRessources = data;
             } catch (error) {
                 console.error(

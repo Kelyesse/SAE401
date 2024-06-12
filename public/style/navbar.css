@@ -5,6 +5,13 @@
     box-sizing: border-box;
 }
 
+#logo_desktop {
+    font-family:'stara';
+    font-size: 32px;
+    color: #fff;
+    text-decoration: none;
+}
+
 @media screen and (min-width: 1000px) {
 
     #navbar {
@@ -16,13 +23,7 @@
         height: 100px;
         background-color: #960f26;
     }
-    
-    #logo_desktop {
-        font-family:'stara';
-        font-size: 32px;
-        color: #fff;
-        text-decoration: none;
-    }
+  
 
     #rubriques a {
         font-family: 'stara-bold';
