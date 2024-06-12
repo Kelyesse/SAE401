@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Livre;
 use App\Models\Dvd;
 use App\Models\Auteur;
 use App\Models\Realisateur;
 use App\Models\Note;
+use App\Models\User; // Assurez-vous d'importer le modèle User
+
 
 class RessourceController extends Controller
 {
@@ -49,9 +52,15 @@ class RessourceController extends Controller
 
         try {
             if ($isbn) {
-                $avis = Note::where('id_livre', $id)->get(); // Utilisez `get()` pour obtenir un tableau
+                $avis = Note::select('note.*', 'utilisateurs.prenom', 'utilisateurs.nom')
+                            ->join('utilisateurs', 'note.id_utilisateur', '=', 'utilisateurs.id')
+                            ->where('id_livre', $id)
+                            ->get();
             } else {
-                $avis = Note::where('id_dvd', $id)->get();
+                $avis = Note::select('note.*', 'utilisateurs.prenom', 'utilisateurs.nom')
+                            ->join('utilisateurs', 'note.id_utilisateur', '=', 'utilisateurs.id')
+                            ->where('id_dvd', $id)
+                            ->get();
             }
 
             if ($avis->isEmpty()) {
@@ -64,5 +73,39 @@ class RessourceController extends Controller
         }
     }
 
+    public function addReview(Request $request)
+    {
+        $request->validate([
+            'commentaire' => 'required|string',
+            'id_utilisateur' => 'required|exists:utilisateurs,id',
+            'id_livre' => 'nullable|exists:livres,id',
+            'id_dvd' => 'nullable|exists:dvds,id',
+            'type_ressource' => 'required|in:livre,dvd',
+            'note' => 'required|numeric|min:0|max:5',
+            'date_note' => 'required|date',
+        ]);
+
+        try {
+            // Créer un nouvel avis dans la table note avec les données fournies
+            $review = new Note();
+            $review->fill($request->only([
+                'commentaire',
+                'id_utilisateur',
+                'id_livre',
+                'id_dvd',
+                'type_ressource',
+                'note',
+                'date_note',
+            ]));
+            $review->save();
+
+            // Répondre avec succès
+            return response()->json(['message' => 'Review added successfully'], 200);
+        } catch (Exception $e) {
+            // En cas d'erreur, répondre avec une erreur
+            return response()->json(['error' => 'Failed to add review'], 500);
+        }
+    }
 }
 
+?>

@@ -156,6 +156,7 @@ body {
 
 .liste-avis {
     width: 600px;
+    margin-bottom: 100px;
 }
 
 .liste-avis h2 {
@@ -165,6 +166,7 @@ body {
 
 .avis {
     margin: 20px 0;
+    font-size: 14px;
     color: #fff;
     font-family: 'stara-medium';
 }

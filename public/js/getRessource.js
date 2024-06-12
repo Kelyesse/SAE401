@@ -3,9 +3,9 @@ document.addEventListener("alpine:init", () => {
         ressource: [],
         ratings: [],
         numberOfRatings: 0,
-        newReview: {
-            text: ''
-        },
+        newReview: {text: '' },
+        isUserLoggedIn: false, 
+
         async fetchRessource() {
             try {
                 const params = new URLSearchParams(window.location.search);
@@ -53,6 +53,59 @@ document.addEventListener("alpine:init", () => {
         async submitReview() {
             // Logique pour soumettre un avis
             console.log('Submit Review:', this.newReview.text);
+        },
+
+        async checkUserLoggedIn() {
+
+            
+            try {
+                const response = await fetch(`/api/checkSession`);
+                const data = await response.json();
+                console.log(data);
+                if(data.nom)
+                {   
+                    this.isUserLoggedIn = true; // Remplacer par votre logique réelle
+                    console.log('badojazo');
+                }
+            } catch (error) {
+                console.error(
+                    "Une erreur s'est produite lors de la récupération de la ressource",
+                    error
+                );
+            }
+        },
+
+        submitReview() {
+            fetch('/api/add-review', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}' // Utilisez le jeton CSRF pour protéger contre les attaques CSRF
+                },
+                body: JSON.stringify({
+                    commentaire: this.newReview.text
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Réussite, effacez le contenu du champ de texte après l'envoi de l'avis
+                    this.newReview.text = '';
+                    // Vous pouvez également mettre à jour les avis affichés si nécessaire
+                    // Par exemple, en rappelant la méthode fetchRatings() pour obtenir les derniers avis
+                } else {
+                    // Gestion des erreurs si nécessaire
+                    console.error('Failed to submit review:', response.statusText);
+                }
+            })
+            .catch(error => {
+                console.error('Error submitting review:', error);
+            });
         }
+        
+
+        
     }));
+
+    
+
 });

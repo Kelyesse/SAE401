@@ -36,20 +36,27 @@
 
 <img src="./storage/wave.png" alt="" style="width:100%">
 
-<div id="section-avis">
+<div id="section-avis" x-data="ressource">
 
-    <div class="review-form">
+    <div class="review-form" x-show="isUserLoggedIn" x-init="checkUserLoggedIn">
         <h2>Donnez votre avis</h2>
         <textarea x-model="newReview.text" placeholder="Écrivez votre avis ici"></textarea>
-        <button @click="submitReview()">Envoyer</button>
+        <form action="/api/add-review" method="post">
+                    @csrf
+                    <button type="submit">Envoyer</button>
+                </form>
     </div>
 
-    <div class="liste-avis" x-data="ressource" x-init="fetchRatings()">
+
+    <div class="liste-avis" x-init="fetchRatings()">
         <h2>Avis (<span x-text="numberOfRatings"></span>)</h2>
         <div class="avis">
             <template x-if="ratings.length > 0">
                 <template x-for="rating in ratings" :key="rating.id">
-                    <div class="ressource-title" x-text="rating.commentaire || 'Pas de commentaire disponible'"></div>
+                    <div class="ressource-title">
+                        <p style="margin-bottom:10px;"><span x-text="rating.prenom +' '" style="font-family:'stara-bold'; font-size:18px;"></span><span x-text="rating.nom" style="font-family:'stara-bold'; font-size:18px; margin-right:10px;"></span><span x-text="rating.note + '/5'" style="font-family:'stara-bold'; font-size:18px;"></span></p>
+                        <p><span x-text="rating.commentaire || 'Pas de commentaire disponible'"></span></p>
+                    </div>
                 </template>
             </template>
             <template x-if="ratings.length === 0">
@@ -57,6 +64,7 @@
             </template>
         </div>
     </div>
+
 
 </div>
 

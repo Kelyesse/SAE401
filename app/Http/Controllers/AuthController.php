@@ -61,4 +61,11 @@ class AuthController extends Controller
         Auth::logout();
         return redirect()->route('compte')->with('msg', 'logout');
     }
+
+    public function checkSession()
+    {
+        $user = Auth::user();
+        
+        return response()->json($user);
+    }
 }
