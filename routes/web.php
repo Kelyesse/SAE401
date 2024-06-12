@@ -37,10 +37,14 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+
+
+
 Route::get('/api/ressources', [CatalogueController::class, 'getAllRessources']);
 Route::get('/api/ressources/search', [CatalogueController::class, 'searchRessources']);
 Route::get('/api/ressources/filterOptions', [CatalogueController::class, 'getFilterOptions']);
-
+Route::get('/api/checkSession', [AuthController::class, 'checkSession']);
+Route::post('/api/add-review', [RessourceController::class, 'addReview']);
 
 
 
@@ -50,6 +54,9 @@ Route::get('/api/ressources/homepage', [CatalogueController::class, 'getHomepage
 
 
 Route::get('/api/ressource', [RessourceController::class, 'getRessource']);
+
+Route::get('/ressource/getRatings', [RessourceController::class, 'getRatings']);
+
 
 //Contact//
 

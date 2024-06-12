@@ -68,6 +68,13 @@ class AuthController extends Controller
         return redirect()->route('compte')->with('msg', 'logout');
     }
 
+
+    public function checkSession()
+    {
+        $user = Auth::user();
+        
+        return response()->json($user);
+
     public function adminDashboard()
     {
         $user = Auth::user();
@@ -120,5 +127,6 @@ class AuthController extends Controller
         }
 
         return redirect('/')->with('error', 'You do not have access to this section');
+
     }
 }

@@ -73,6 +73,17 @@
     #menu_burger {
         display: none;
     }
+
+    #logout-button{
+        border: none;
+        background-color: #960f26;
+    }
+
+    #logout-button img{
+        width: 30px;
+        filter: invert();
+
+    }
     
     
 }

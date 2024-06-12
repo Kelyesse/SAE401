@@ -10,8 +10,6 @@
     <title>Dune 2 Review</title>
     <script src="./js/getRessource.js"></script>
     <link rel="stylesheet" href="./style/ressource.css">
-
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
 <body>
 
@@ -23,7 +21,6 @@
             <div id="section-auteur">
                 <img id="icone-auteur" src="./storage/icone-auteur.svg" alt="">
                 <p id="auteur-ressource" x-text="ressource.isbn ? ressource.auteur_nom_complet : ressource.realisateur_nom_complet"></p>
-
             </div>
             <div style="width:350px; background-color:#010423; height:2px; margin:20px 0;"></div>
             <p id="type-ressource" x-text="(ressource.isbn ? 'Livre'+' - '+ressource.annee : 'Film' +' - '+ressource.annee)"></p>
@@ -37,35 +34,40 @@
     </div>
 </div>
 
+<img src="./storage/wave.png" alt="" style="width:100%">
+
+<div id="section-avis" x-data="ressource">
+
+    <div class="review-form" x-show="isUserLoggedIn" x-init="checkUserLoggedIn">
+        <h2>Donnez votre avis</h2>
+        <textarea x-model="newReview.text" placeholder="Écrivez votre avis ici"></textarea>
+        <form action="/api/add-review" method="post">
+                    @csrf
+                    <button type="submit">Envoyer</button>
+                </form>
+    </div>
 
 
-
-    <img src="./storage/wave.png" alt="" style="width:100%">
-
-    <div id="section-avis">
-        <div class="review-form">
-                <h2>Donnez votre avis</h2>
-                <textarea x-model="newReview.text" placeholder="Écrivez votre avis ici"></textarea>
-                <button @click="submitReview()">Envoyer</button>
-            </div>
-
-            <div class="reviews" style="background-color:#161b2a">
-                <h2>Avis (<span x-text="reviews.length"></span>)</h2>
-                <template x-for="review in reviews" :key="review.id">
-                    <div class="review">
-                        <h3 x-text="review.name"></h3>
-                        <div class="stars">
-                            <template x-for="star in 5">
-                                <span :class="{'filled': star <= review.rating}">&#9733;</span>
-                            </template>
-                        </div>
-                        <p x-text="review.text"></p>
+    <div class="liste-avis" x-init="fetchRatings()">
+        <h2>Avis (<span x-text="numberOfRatings"></span>)</h2>
+        <div class="avis">
+            <template x-if="ratings.length > 0">
+                <template x-for="rating in ratings" :key="rating.id">
+                    <div class="ressource-title">
+                        <p style="margin-bottom:10px;"><span x-text="rating.prenom +' '" style="font-family:'stara-bold'; font-size:18px;"></span><span x-text="rating.nom" style="font-family:'stara-bold'; font-size:18px; margin-right:10px;"></span><span x-text="rating.note + '/5'" style="font-family:'stara-bold'; font-size:18px;"></span></p>
+                        <p><span x-text="rating.commentaire || 'Pas de commentaire disponible'"></span></p>
                     </div>
                 </template>
-            </div>
-        <script src="script.js"></script>
+            </template>
+            <template x-if="ratings.length === 0">
+                <p>Aucun avis disponible.</p>
+            </template>
+        </div>
     </div>
-        
+
+
+</div>
+
 </body>
 </html>
 
