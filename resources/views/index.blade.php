@@ -17,8 +17,8 @@
         <div class="content">
             <h1 class="hero__title">Livres et DVDs accessibles pour tous.</h1>
             <h2 class="hero__description">Accédez à notre catalogue complet</h2>
-            <div class="search-bar">
-                <div class="input-search-bar" x-data="ressources">
+            <div class="search-bar" x-data="ressources">
+                <div class="input-search-bar">
                     <input type="text" placeholder="Rechercher..." x-model="searchQuery"
                         @keydown.enter="fetchFilteredRessources">
                     <template x-if="searchQuery">
@@ -38,7 +38,6 @@
         <p>Découvrez notre sélection de livres et de DVDs préférés, soigneusement choisis par notre équipe pour vous
             offrir le meilleur divertissement.</p>
         <div class="carousel">
-            <img class="carousel-arrow previous-arrow" src="./storage/next-icon.png" alt="" @click="prev">
             <div class="ressource-container">
                 <template x-for="ressource in homepageRessources.favorite_ressources">
                     <template x-if="ressource.imgUrl">
@@ -50,7 +49,6 @@
                     </template>
                 </template>
             </div>
-            <img class="carousel-arrow" src="./storage/next-icon.png" alt="" @click="next">
         </div>
     </section>
 
@@ -58,7 +56,6 @@
         <h2>Les nouveautés</h2>
         <p>Les nouveaux livres et films qui viennent d'arriver chez votre médiathèque préférée.</p>
         <div class="carousel">
-            <img class="carousel-arrow previous-arrow" src="./storage/next-icon.png" alt="" @click="prev">
             <div class="ressource-container">
                 <template x-for="ressource in homepageRessources.new_ressources">
                     <template x-if="ressource.imgUrl">
@@ -70,7 +67,42 @@
                     </template>
                 </template>
             </div>
-            <img class="carousel-arrow" src="./storage/next-icon.png" alt="" @click="next">
+        </div>
+    </section>
+
+    <section class="books">
+        <h2>Les livres</h2>
+        <p>Quelques livres disponibles chez Polymedia !</p>
+        <div class="carousel">
+            <div class="ressource-container">
+                <template x-for="ressource in homepageRessources.books">
+                    <template x-if="ressource.imgUrl">
+                        <a :href="'./ressource?' + (ressource . isbn ? 'isbn=' + ressource . isbn : 'ian=' + ressource . ian) + '&id=' + ressource . id" class="ressource-item">
+                            <img class="ressource-img" :src="'./storage/' + ressource . imgUrl" alt="Image du livre">
+                            <div class="ressource-title" x-text="ressource.titre"></div>
+                            <div class="ressource-year" x-text="ressource.annee"></div>
+                        </a>
+                    </template>
+                </template>
+            </div>
+        </div>
+    </section>
+
+    <section class="movies">
+        <h2>Les films</h2>
+        <p>Quelques films disponibles chez Polymedia !</p>
+        <div class="carousel">
+            <div class="ressource-container">
+                <template x-for="ressource in homepageRessources.movies">
+                    <template x-if="ressource.imgUrl">
+                        <a :href="'./ressource?' + (ressource . isbn ? 'isbn=' + ressource . isbn : 'ian=' + ressource . ian) + '&id=' + ressource . id" class="ressource-item">
+                            <img class="ressource-img" :src="'./storage/' + ressource . imgUrl" alt="Image du livre">
+                            <div class="ressource-title" x-text="ressource.titre"></div>
+                            <div class="ressource-year" x-text="ressource.annee"></div>
+                        </a>
+                    </template>
+                </template>
+            </div>
         </div>
     </section>
 
@@ -93,10 +125,10 @@
         </div>
     </section>
 
-    <section class="faq" x-data="faq">
+    <section class="faq">
         <h2 class="faq__title">Les questions fréquentes</h2>
         <div class="faq__item">
-            <button class="faq__question-button" @click="toggle(1)">
+            <button class="faq__question-button">
                 <span>Qu'est-ce que Polymedia ?</span>
                 <span class="faq__question-icon">+</span>
             </button>
@@ -105,7 +137,7 @@
             </div>
         </div>
         <div class="faq__item">
-            <button class="faq__question-button" @click="toggle(2)">
+            <button class="faq__question-button">
                 <span>Comment puis-je m'inscrire ?</span>
                 <span class="faq__question-icon">+</span>
             </button>
@@ -114,7 +146,7 @@
             </div>
         </div>
         <div class="faq__item">
-            <button class="faq__question-button" @click="toggle(3)">
+            <button class="faq__question-button">
                 <span>Quels sont les moyens de paiement acceptés ?</span>
                 <span class="faq__question-icon">+</span>
             </button>

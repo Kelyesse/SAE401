@@ -21,8 +21,6 @@ class Livre extends Model
         'statut',
         'id_langue',
         'nombre_exemplaires',
-        'maison_edition',
-        'collection',
     ];
 
     public function auteur()

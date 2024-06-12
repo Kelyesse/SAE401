@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCastingsTable extends Migration
+class CreateCastingTable extends Migration
 {
     public function up()
     {
@@ -14,9 +14,7 @@ class CreateCastingsTable extends Migration
             $table->unsignedBigInteger('id_dvd');
             $table->timestamps();
 
-            // Clés étrangères
-            $table->foreign('id_acteur')->references('id')->on('acteurs')->onDelete('cascade');
-            $table->foreign('id_dvd')->references('id')->on('dvds')->onDelete('cascade');
+            $table->foreign('id_acteur')->references('id')->on('acteurs');
         });
     }
 

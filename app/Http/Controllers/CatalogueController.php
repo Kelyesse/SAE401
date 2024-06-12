@@ -121,11 +121,11 @@ class CatalogueController extends Controller
         // Fetch the resources with the best notes
         $favoriteBooks = Livre::with('notes')->get()->sortByDesc(function ($book) {
             return $book->notes->avg('note');
-        })->take(2);
+        })->take(3);
 
         $favoriteMovies = Dvd::with('notes')->get()->sortByDesc(function ($movie) {
-            return $movie->notes->avg('rating');
-        })->take(2);
+            return $movie->notes->avg('note');
+        })->take(3);
 
         // Fetch all books and movies
         $books = Livre::all();

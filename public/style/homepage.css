@@ -91,10 +91,14 @@
 }
 
 
-.favorites, .news {
+.favorites, .news, .books, .movies {
     padding: 50px 20px;
     text-align: center;
     font-family: 'stara-medium';
+}
+
+.movies {
+    margin-bottom: 40px;
 }
 
 
@@ -138,23 +142,41 @@
 
 .carousel {
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 40px;
+    gap: 20px;
 }
 
 .ressource-container {
     display: flex;
     align-items: center;
     gap: 15px;
-    overflow: hidden;
+    overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
+    max-width: 800px;
 }
 
-.carousel-arrow{
-    width: 20px;
-    height: 20px;
+.ressource-container::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
 }
+
+.ressource-container::-webkit-scrollbar
+{
+    height: 4px;
+	background-color: #F5F5F5;
+}
+
+.ressource-container::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #D62929;
+}
+
 
 .previous-arrow{
     transform: rotate(180deg);
@@ -232,8 +254,7 @@
 }
 
 .faq__question-button {
-    background-color: #ae212d;
-    color: white;
+    color: var(--primary-color);
     border: none;
     padding: 15px 20px;
     cursor: pointer;
@@ -245,6 +266,8 @@
     align-items: center;
     border-radius: 10px;
     font-family: 'stara-medium';
+    box-shadow:  1px 1px 2px rgba(0,0,0,0.4);
+
 }
 
 .faq__question-icon {
