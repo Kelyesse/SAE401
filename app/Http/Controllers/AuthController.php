@@ -46,11 +46,17 @@ class AuthController extends Controller
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->mot_de_passe])) {
             $user = Auth::user();
-            if ($user->statut == 'off') {
-                Auth::logout();
-                return redirect()->route('compte')->with('msg', 'off');
+            // if ($user->statut == 'off') {
+            //     Auth::logout();
+            //     return redirect()->route('compte')->with('msg', 'off');
+            // }
+
+            // Redirection en fonction du type d'utilisateur
+            if ($user->type_utilisateur == 'admin') {
+                return redirect('/admin');
+            } else {
+                return redirect()->route('index');
             }
-            return redirect()->route('index');
         }
 
         return redirect()->route('compte')->with('msg', 'iuser');
@@ -60,5 +66,59 @@ class AuthController extends Controller
     {
         Auth::logout();
         return redirect()->route('compte')->with('msg', 'logout');
+    }
+
+    public function adminDashboard()
+    {
+        $user = Auth::user();
+
+        if ($user && $user->type_utilisateur == 'admin') {
+            $utilisateurs = Utilisateur::all(); // Récupérer tous les utilisateurs
+            return view('admindashboard', compact('utilisateurs'));
+        }
+
+        return redirect('/')->with('error', 'You do not have access to this section');
+    }
+
+    public function updateUser(Request $request, $id)
+    {
+        $user = Auth::user();
+
+        if ($user && $user->type_utilisateur == 'admin') {
+            $utilisateur = Utilisateur::find($id);
+
+            if (!$utilisateur) {
+                return redirect()->route('admin.dashboard')->with('error', 'Utilisateur non trouvé');
+            }
+
+            $utilisateur->update($request->all());
+
+            return redirect()->route('admin.dashboard')->with('success', 'Utilisateur mis à jour avec succès');
+        }
+
+        return redirect('/')->with('error', 'You do not have access to this section');
+    }
+
+    public function deleteUser($id)
+    {
+        $user = Auth::user();
+
+        if ($user && $user->type_utilisateur == 'admin') {
+            $utilisateur = Utilisateur::find($id);
+
+            if (!$utilisateur) {
+                return redirect()->route('admin.dashboard')->with('error', 'Utilisateur non trouvé');
+            }
+
+            // Supprimer les réservations associées à l'utilisateur
+            $utilisateur->reservations()->delete();
+
+            // Supprimer l'utilisateur
+            $utilisateur->delete();
+
+            return redirect()->route('admin.dashboard')->with('success', 'Utilisateur supprimé avec succès');
+        }
+
+        return redirect('/')->with('error', 'You do not have access to this section');
     }
 }
