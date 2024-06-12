@@ -119,7 +119,7 @@
             <button @click="fetchFilteredRessources" class="apply-filters-button">Valider</button>
         </div>
     </div>
-    <div class="active-filters-container" x-show="Object.values(filters).some(value => value)">
+    <div class="active-filters-container" x-show="Object.values(filters).some(value => value) && isFiltered">
         <template x-if="Object.values(filters).some(value => value)">
             <div class="filter-message">Filtres actifs : </div>
         </template>

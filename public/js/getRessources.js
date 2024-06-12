@@ -1,6 +1,5 @@
 document.addEventListener("alpine:init", () => {
     Alpine.data("ressources", () => ({
-        ressources: [],
         showFilters: false,
         filteredRessources: [],
         filters: {
@@ -15,13 +14,14 @@ document.addEventListener("alpine:init", () => {
         },
         filterOptions: {},
         isResponseEmpty: false,
+        isFiltered: false,
         async fetchAllRessources() {
             try {
                 const response = await fetch("/api/ressources");
                 const data = await response.json();
                 this.isResponseEmpty = data.length === 0;
-                this.ressources = data;
                 this.filteredRessources = data;
+                this.isFiltered = false;
             } catch (error) {
                 console.error(
                     "Une erreur s'est produite lors de la récupération des livres:",
@@ -41,6 +41,7 @@ document.addEventListener("alpine:init", () => {
                 const data = await response.json();
                 this.isResponseEmpty = data.length === 0;
                 this.filteredRessources = data;
+                this.isFiltered = true;
             } catch (error) {
                 console.error(
                     "Une erreur s'est produite lors de la récupération des ressources filtrées:",
