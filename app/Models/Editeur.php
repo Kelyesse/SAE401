@@ -14,7 +14,6 @@ class Editeur extends Model
         'nom',
         'adresse',
         'telephone',
-        // Ajoute d'autres colonnes ici si nécessaire
     ];
 
     // Relation avec les livres publiés par cet éditeur

@@ -31,12 +31,12 @@ class Livre extends Model
     }
     public function editeur()
     {
-        return $this->belongsTo(Editeur::class, 'id_editeur', 'id_editeur');
+        return $this->belongsTo(Editeur::class, 'id_editeur', 'id');
     }
 
     public function langue()
     {
-        return $this->belongsTo(Langue::class, 'id_langue', 'id_langue');
+        return $this->belongsTo(Langue::class, 'id_langue', 'id');
     }
     public function notes()
     {

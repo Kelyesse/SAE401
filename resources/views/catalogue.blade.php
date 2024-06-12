@@ -16,9 +16,9 @@
         </div>
         <div class="search-bar">
             <div class="input-search-bar">
-                <input type="text" placeholder="Rechercher..." x-model="searchQuery"
+                <input type="text" placeholder="Rechercher..." x-model="filters.searchQuery"
                     @keydown.enter="fetchFilteredRessources">
-                <template x-if="searchQuery">
+                <template x-if="filters.searchQuery">
                     <img class="clear-icon" src="./storage/clear-icon.png" alt="Clear" @click="clearSearch">
                 </template>
             </div>
@@ -26,14 +26,14 @@
             <div class="search-button" @click="fetchFilteredRessources">
                 <img src="./storage/search-icon.svg" alt="Search">
             </div>
-            <img class="filter-icon" src="./storage/filter-icon.svg" alt="Filtres" @click="showFilters = true">
+            <img class="filter-icon" src="./storage/filter-icon.svg" alt="Filtres" @click="fetchFilterOptions">
         </div>
         <div class="filter-container" x-show="showFilters" @click.away="showFilters = false">
             <div class="generic-filters">
                 <div class="filter-title">Filtres</div>
                 <div class="filter-options">
                     <div class="filter-option">
-                        <select id="genre">
+                        <select id="genre" x-model="filters.genre">
                             <option value="" disabled selected>Genre</option>
                             <option value="Romance">Romance</option>
                             <option value="Science-fiction">Science-fiction</option>
@@ -56,14 +56,16 @@
                         </select>
                     </div>
                     <div class="filter-option">
-                        <select id="status">
-                            <option value="" disabled selected>Disponibilité</option>
-                            <option value="disponible">Disponible</option>
-                            <option value="indisponible">Indisponible</option>
+                        <select id="year" x-model="filters.annee">
+                            <option value="" disabled selected>Année</option>
+                            <template x-for="annee in filterOptions.annees">
+                                <option :value="annee" x-text="annee"></option>
+                            </template>
                         </select>
                     </div>
-                    <div class="filter-option">
-                        <input type="number" id="year" min="1500" max="2025" placeholder="Année">
+                    <div class="filter-option status-filter">
+                        <label for="disponibilite">Ressources disponibles</label>
+                        <input x-model="filters.isAvailable" type="checkbox" id="disponibilite">
                     </div>
                 </div>
             </div>
@@ -72,11 +74,19 @@
                     <div class="filter-subtitle">Spécifique aux livres</div>
                     <div class="filter-options-specific">
                         <div class="filter-option">
-                            <input type="text" id="author" placeholder="Auteur">
+                            <select id="auteur" x-model="filters.auteur">
+                                <option value="" disabled selected>Auteur</option>
+                                <template x-for="auteur in filterOptions.auteurs" :key="auteur . id">
+                                    <option :value="auteur . id" x-text="auteur.nom"></option>
+                                </template>
+                            </select>
                         </div>
                         <div class="filter-option">
-                            <select id="editeur">
+                            <select id="editeur" x-model="filters.editeur">
                                 <option value="" disabled selected>Maison d'édition</option>
+                                <template x-for="editeur in filterOptions.editeurs" :key="editeur . id">
+                                    <option :value="editeur . id" x-text="editeur.nom"></option>
+                                </template>
                             </select>
                         </div>
                     </div>
@@ -85,20 +95,51 @@
                     <div class="filter-subtitle">Spécifique aux films</div>
                     <div class="filter-options-specific">
                         <div class="filter-option">
-                            <input type="text" id="actor" placeholder="Acteur">
+                            <select id="acteur" x-model="filters.acteur">
+                                <option value="" disabled selected>Acteur</option>
+                                <template x-for="acteur in filterOptions.acteurs" :key="acteur . id">
+                                    <option :value="acteur . id" x-text="acteur.nom"></option>
+                                </template>
+                            </select>
                         </div>
                         <div class="filter-option">
-                            <input type="text" id="director" placeholder="Réalisateur">
+                            <select id="realisateur" x-model="filters.realisateur">
+                                <option value="" disabled selected>Réalisateur</option>
+                                <template x-for="realisateur in filterOptions.realisateurs" :key="realisateur . id">
+                                    <option :value="realisateur . id" x-text="realisateur.nom"></option>
+                                </template>
+                            </select>
                         </div>
                     </div>
                 </div>
             </div>
 
             <img class="close-icon" src="./storage/clear-icon.png" @click="showFilters = false">
+            <div @click="clearSearch" class="clear-filters">Effacer</div>
+            <button @click="fetchFilteredRessources" class="apply-filters-button">Valider</button>
         </div>
+    </div>
+    <div class="active-filters-container" x-show="Object.values(filters).some(value => value) && isFiltered">
+        <template x-if="Object.values(filters).some(value => value)">
+            <div class="filter-message">Filtres actifs : </div>
+        </template>
+        <template x-for="[key, value] of Object.entries(filters)" :key="key">
+            <template x-if="value">
+                <div class="active-filter"
+                    x-text="key === 'isAvailable' ? 'Disponibilité' : (key === 'searchQuery' ? 'Recherche' : key)">
+                </div>
+            </template>
+        </template>
+        <img class="clear-icon" src="./storage/clear-icon.png" alt="Clear" @click="clearSearch">
     </div>
 
     <div class="ressource-list">
+        <template x-if="isResponseEmpty">
+            <div class="no-ressources-message">
+                Aucune ressource trouvée dans notre catalogue avec ces critères de recherche...
+                <div @click="clearSearch" class="delete-filters-button">Supprimer les filtres</div>
+            </div>
+        </template>
         <template x-for="ressource in filteredRessources">
             <template x-if="ressource.imgUrl">
                 <a :href="'./ressource?' + (ressource . isbn ? 'isbn=' + ressource . isbn : 'ian=' + ressource . ian) + '&id=' + ressource . id" class="ressource-item">
@@ -111,31 +152,5 @@
     </div>
 </main>
 
-<script>
-    function catalogue() {
-        return {
-            searchQuery: '',
-            ressources: [],
-            filteredRessources: [],
-            async fetchAllRessources() {
-                try {
-                    const response = await fetch('/api/catalogue'); // Adjust the URL to match your API endpoint
-                    this.ressources = await response.json();
-                    this.filteredRessources = this.ressources;
-                } catch (error) {
-                    console.error('Error fetching ressources:', error);
-                }
-            },
-            async fetchFilteredRessources() {
-                try {
-                    const response = await fetch('/api/catalogue?query=' + this.searchQuery); // Adjust the URL to match your API endpoint
-                    this.filteredRessources = await response.json();
-                } catch (error) {
-                    console.error('Error fetching filtered ressources:', error);
-                }
-            }
-        }
-    }
-</script>
 
 @endsection

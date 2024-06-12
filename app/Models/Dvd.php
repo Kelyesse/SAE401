@@ -15,7 +15,6 @@ class Dvd extends Model
         'id_realisateur',
         'genre',
         'titre',
-        'id_casting',
         'annee',
         'statut',
         'nombre_exemplaires',
@@ -35,8 +34,16 @@ class Dvd extends Model
     {
         return $this->belongsToMany(Langue::class, 'dvdlangues', 'id_dvd', 'langue_id');
     }
-    public function notes()
+
+    // Relation avec les acteurs du DVD
+    public function acteurs()
     {
-        return $this->hasMany(Note::class, 'id_dvd', 'id');
+        return $this->belongsToMany(Acteur::class, 'castings', 'id_dvd', 'id_acteur');
+    }
+
+    // Relation avec les castings du DVD
+    public function castings()
+    {
+        return $this->hasMany(Casting::class, 'id_dvd');
     }
 }
