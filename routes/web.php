@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CatalogueController;
 use App\Http\Controllers\RessourceController;
+use App\Http\Controllers\ContactController;
+
 
 
 Route::get('/', function () {
@@ -37,3 +39,9 @@ Route::get('/api/ressources/filterOptions', [CatalogueController::class, 'getFil
 
 Route::get('/api/ressource', [RessourceController::class, 'getRessource']);
 
+//Contact//
+
+Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
+Route::post('/contact', [ContactController::class, 'sendMail'])->name('contact.send');
+
+//Fin Contact//
