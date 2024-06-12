@@ -21,7 +21,6 @@
             <div id="section-auteur">
                 <img id="icone-auteur" src="./storage/icone-auteur.svg" alt="">
                 <p id="auteur-ressource" x-text="ressource.isbn ? ressource.auteur_nom_complet : ressource.realisateur_nom_complet"></p>
-
             </div>
             <div style="width:350px; background-color:#010423; height:2px; margin:20px 0;"></div>
             <p id="type-ressource" x-text="(ressource.isbn ? 'Livre'+' - '+ressource.annee : 'Film' +' - '+ressource.annee)"></p>
@@ -35,25 +34,32 @@
     </div>
 </div>
 
+<img src="./storage/wave.png" alt="" style="width:100%">
 
+<div id="section-avis">
 
-
-    <img src="./storage/wave.png" alt="" style="width:100%">
-
-    <div id="section-avis">
-        <div class="review-form">
-                <h2>Donnez votre avis</h2>
-                <textarea x-model="newReview.text" placeholder="Écrivez votre avis ici"></textarea>
-                <button @click="submitReview()">Envoyer</button>
-            </div>
-
-            <div x-data="ressource" x-init="fetchRatings">
-                <h2>Avis</h2>
-                <div class="avis">
-                </div>
-            </div>
+    <div class="review-form">
+        <h2>Donnez votre avis</h2>
+        <textarea x-model="newReview.text" placeholder="Écrivez votre avis ici"></textarea>
+        <button @click="submitReview()">Envoyer</button>
     </div>
-        
+
+    <div class="liste-avis" x-data="ressource" x-init="fetchRatings()">
+        <h2>Avis (<span x-text="numberOfRatings"></span>)</h2>
+        <div class="avis">
+            <template x-if="ratings.length > 0">
+                <template x-for="rating in ratings" :key="rating.id">
+                    <div class="ressource-title" x-text="rating.commentaire || 'Pas de commentaire disponible'"></div>
+                </template>
+            </template>
+            <template x-if="ratings.length === 0">
+                <p>Aucun avis disponible.</p>
+            </template>
+        </div>
+    </div>
+
+</div>
+
 </body>
 </html>
 

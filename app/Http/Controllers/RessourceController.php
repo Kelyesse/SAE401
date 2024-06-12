@@ -47,15 +47,22 @@ class RessourceController extends Controller
         $ian = $request->query('ian');
         $id = $request->query('id');
 
+        try {
+            if ($isbn) {
+                $avis = Note::where('id_livre', $id)->get(); // Utilisez `get()` pour obtenir un tableau
+            } else {
+                $avis = Note::where('id_dvd', $id)->get();
+            }
 
-        if ($isbn) {
-            $avis = Note::where('id_livre', $id)->first();
-        } else {
-            $avis = Note::where('id_dvd', $id)->first();
+            if ($avis->isEmpty()) {
+                return response()->json([]);
+            }
 
+            return response()->json($avis);
+        } catch (Exception $e) {
+            return response()->json(['error' => 'Internal Server Error'], 500);
         }
-        // Passer la ressource et les avis à la vue
-        return response()->json($avis);
     }
+
 }
 

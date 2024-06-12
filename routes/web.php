@@ -35,6 +35,6 @@ Route::get('/api/ressources/search', [CatalogueController::class, 'searchRessour
 
 Route::get('/api/ressource', [RessourceController::class, 'getRessource']);
 
-Route::get('/api/ratings', [RessourceController::class, 'getRatings']);
+Route::get('/ressource/getRatings', [RessourceController::class, 'getRatings']);
 
 
