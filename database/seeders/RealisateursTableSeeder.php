@@ -45,6 +45,30 @@ class RealisateursTableSeeder extends Seeder
                 'biographie' => 'Quentin Tarantino est un réalisateur américain célèbre pour ses films comme "Pulp Fiction" et "Kill Bill".',
                 'id_nationalite' => 2, // Assuming 'United States' has an ID of 2 in the 'pays' table
             ],
+            [
+                'nom' => 'Miller',
+                'prenom' => 'George',
+                'biographie' => 'George Miller est un réalisateur australien connu pour ses films "Mad Max" et "Happy Feet".',
+                'id_nationalite' => 4, // Assuming 'Australia' has an ID of 4 in the 'pays' table
+            ],
+            [
+                'nom' => 'Zemeckis',
+                'prenom' => 'Robert',
+                'biographie' => 'Robert Zemeckis est un réalisateur américain connu pour ses films "Forrest Gump" et "Retour vers le futur".',
+                'id_nationalite' => 2, // Assuming 'United States' has an ID of 2 in the 'pays' table
+            ],
+            [
+                'nom' => 'Anderson',
+                'prenom' => 'Wes',
+                'biographie' => 'Wes Anderson est un réalisateur américain connu pour ses films "The Grand Budapest Hotel" et "Fantastic Mr. Fox".',
+                'id_nationalite' => 2, // Assuming 'United States' has an ID of 2 in the 'pays' table
+            ],
+            [
+                'nom' => 'Miyazaki',
+                'prenom' => 'Hayao',
+                'biographie' => 'Hayao Miyazaki est un réalisateur japonais connu pour ses films "Spirited Away" et "Mon voisin Totoro".',
+                'id_nationalite' => 5, // Assuming 'Japan' has an ID of 5 in the 'pays' table
+            ],
         ];
 
         // Insert data into the 'realisateurs' table

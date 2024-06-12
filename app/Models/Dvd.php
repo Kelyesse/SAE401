@@ -52,4 +52,9 @@ class Dvd extends Model
     {
         return $this->hasMany(Casting::class, 'id_dvd');
     }
+
+    public function notes()
+    {
+        return $this->hasMany(Note::class, 'id_dvd', 'id');
+    }
 }
