@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Utilisateur extends Model
+class Utilisateur extends Authenticatable
 {
+    use Notifiable;
+
     protected $table = 'utilisateurs'; // Nom de la table associée au modèle
 
     protected $primaryKey = 'id'; // Clé primaire de la table
@@ -18,8 +21,18 @@ class Utilisateur extends Model
         'type_utilisateur',
         'adresse',
         'ville',
+        'code_postal',
         'complement',
     ];
+
+    protected $hidden = [
+        'mot_de_passe',
+    ];
+
+    public function getAuthPassword()
+    {
+        return $this->mot_de_passe;
+    }
 
     public function reservations()
     {
