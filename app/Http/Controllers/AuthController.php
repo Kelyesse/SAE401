@@ -6,11 +6,16 @@ use App\Models\Utilisateur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+
+
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
+     public function register(Request $request)
     {
+        Log::info('Register method called.');
+
         $request->validate([
             'prenom' => 'required|string|max:255',
             'nom' => 'required|string|max:255',
@@ -19,10 +24,12 @@ class AuthController extends Controller
             'adresse' => 'required|string|max:255',
             'ville' => 'required|string|max:255',
             'code_postal' => 'required|string|max:10',
-            'statut' => 'required|string',
+            'complement' => 'nullable|string|max:255',
         ]);
 
-        Utilisateur::create([
+        Log::info('Validation passed.');
+
+        $utilisateur = Utilisateur::create([
             'prenom' => $request->prenom,
             'nom' => $request->nom,
             'email' => $request->email,
@@ -31,8 +38,9 @@ class AuthController extends Controller
             'ville' => $request->ville,
             'code_postal' => $request->code_postal,
             'complement' => $request->complement,
-            'type_utilisateur' => $request->statut,
         ]);
+
+        Log::info('User created: ', ['user' => $utilisateur]);
 
         return redirect()->route('compte')->with('msg', 'register');
     }
