@@ -1,9 +1,9 @@
 @extends('layouts.layout')
 
+@section('title', 'POLYMEDIA - Catalogue')
 @section('content')
 
 <head>
-    <title>Catalogue</title>
     <link rel="stylesheet" href="./style/catalogue.css">
     <script src="./js/getRessources.js"></script>
 </head>
@@ -143,7 +143,7 @@
         <template x-for="ressource in filteredRessources">
             <template x-if="ressource.imgUrl">
                 <a :href="'./ressource?' + (ressource . isbn ? 'isbn=' + ressource . isbn : 'ian=' + ressource . ian) + '&id=' + ressource . id" class="ressource-item">
-                    <img class="ressource-img" :src="'./storage/' + ressource . imgUrl" alt="Image du livre">
+                    <img class="ressource-img" :src="'./storage/' + ressource . imgUrl" alt="Image de la ressource">
                     <div class="ressource-title" x-text="ressource.titre"></div>
                     <div class="ressource-year" x-text="ressource.annee"></div>
                 </a>
