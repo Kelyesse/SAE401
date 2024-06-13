@@ -1,5 +1,5 @@
 document.addEventListener("alpine:init", () => {
-    Alpine.store("bibliothecaireStore", {
+    Alpine.data("bibliothecaire", () => ({
         reservations: [],
         resources: [],
         newResource: {
@@ -27,7 +27,7 @@ document.addEventListener("alpine:init", () => {
         isFiltered: false,
         async fetchReservations() {
             try {
-                const response = await fetch("/api/reservations");
+                const response = await fetch("/api/reservations/all");
                 const data = await response.json();
                 this.reservations = data;
             } catch (error) {
@@ -39,11 +39,12 @@ document.addEventListener("alpine:init", () => {
         },
         async fetchAllResources() {
             try {
-                const response = await fetch("/api/resources");
+                const response = await fetch("/api/ressources");
                 const data = await response.json();
                 this.isResponseEmpty = data.length === 0;
                 this.filteredResources = data;
                 this.isFiltered = false;
+                console.log(this.filteredResources);
             } catch (error) {
                 console.error(
                     "Erreur lors de la récupération des ressources:",
@@ -58,7 +59,7 @@ document.addEventListener("alpine:init", () => {
                     Object.entries(this.filters).filter(([key, value]) => value)
                 );
                 const response = await fetch(
-                    `/api/resources?${queryParams.toString()}`
+                    `/api/ressources/search?${queryParams.toString()}`
                 );
                 const data = await response.json();
                 this.isResponseEmpty = data.length === 0;
@@ -73,7 +74,7 @@ document.addEventListener("alpine:init", () => {
         },
         async addResource() {
             try {
-                const response = await fetch("/api/resources", {
+                const response = await fetch("/api/ressources/add", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -118,8 +119,10 @@ document.addEventListener("alpine:init", () => {
         getRemainingTime(dateRetourPrevue) {
             const dateRetour = new Date(dateRetourPrevue);
             const maintenant = new Date();
+
             const difference = dateRetour.getTime() - maintenant.getTime();
             const joursRestants = Math.ceil(difference / (1000 * 60 * 60 * 24));
+
             if (joursRestants > 0) {
                 return `Jours restants : ${joursRestants}`;
             } else if (joursRestants === 0) {
@@ -128,12 +131,9 @@ document.addEventListener("alpine:init", () => {
                 return `En retard de ${-joursRestants} jours`;
             }
         },
-    });
-
-    Alpine.data("bibliothecaire", () => ({
         init() {
-            this.$store.bibliothecaireStore.fetchReservations();
-            this.$store.bibliothecaireStore.fetchAllResources();
+            this.fetchReservations();
+            this.fetchAllResources();
         },
     }));
 });

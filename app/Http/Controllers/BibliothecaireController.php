@@ -25,9 +25,9 @@ class BibliothecaireController extends Controller
             ->get();
 
         foreach ($reservations as $reservation) {
-    Log::info($reservation->ressource->imgUrl); // Ajout de logs pour déboguer les URLs d'images
-    Log::info($reservation->ressource->auteur); // Ajout de logs pour déboguer l'auteur
-}
+            Log::info($reservation->ressource->imgUrl); // Ajout de logs pour déboguer les URLs d'images
+            Log::info($reservation->ressource->auteur); // Ajout de logs pour déboguer l'auteur
+        }
 
         return response()->json($reservations);
     }
@@ -48,6 +48,7 @@ class BibliothecaireController extends Controller
         } else {
             $resource = new Dvd($request->all());
         }
+
         $resource->save();
         return response()->json(['success' => true, 'resource' => $resource]);
     }
