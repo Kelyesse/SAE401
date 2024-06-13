@@ -56,7 +56,7 @@
         <div id="textbox">
             <p id="titre-contact" class="titre">Question</p>
             <div id="inputs-question" class="inputs">
-                <input type="text" name="obj" placeholder="Objet" required>
+                <input type="text" class="input-half" name="obj" placeholder="Objet" required>
                 <textarea class="input-full" name="mess" id="input-question" placeholder="Ecrivez votre question ici"
                     required></textarea>
             </div>
