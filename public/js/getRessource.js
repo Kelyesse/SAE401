@@ -84,6 +84,8 @@ document.addEventListener("alpine:init", () => {
                 const isbn = params.get("isbn");
                 const ian = params.get("ian");
                 const id = params.get("id");
+        
+                // Définir le type de ressource et l'ID associé
                 if (ian) {
                     this.newReview.type_ressource = "dvd";
                     this.newReview.id_dvd = id;
@@ -91,18 +93,19 @@ document.addEventListener("alpine:init", () => {
                     this.newReview.type_ressource = "livre";
                     this.newReview.id_livre = id;
                 }
-                this.newReview.note = 4.0;
-
+        
+                // Note et commentaire sont maintenant définis par les inputs
+                console.log("Submitting review:", this.newReview);
+        
                 const response = await fetch("/api/add-review", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        "X-CSRF-TOKEN": document
-                            .querySelector('meta[name="csrf-token"]')
-                            .getAttribute("content"),
+                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
                     },
                     body: JSON.stringify(this.newReview),
                 });
+        
                 if (response.ok) {
                     // Réinitialiser le formulaire après un envoi réussi
                     this.newReview.commentaire = "";
@@ -110,18 +113,14 @@ document.addEventListener("alpine:init", () => {
                     alert("Avis ajouté avec succès !");
                     // Recharger les avis ou rafraîchir la page si nécessaire
                 } else {
-                    console.error(
-                        "Échec de l'ajout de l'avis:",
-                        response.statusText
-                    );
-                    alert(
-                        "Erreur lors de l'ajout de l'avis. Veuillez réessayer."
-                    );
+                    console.error("Échec de l'ajout de l'avis:", response.statusText);
+                    alert("Erreur lors de l'ajout de l'avis. Veuillez réessayer.");
                 }
             } catch (error) {
                 console.error("Erreur lors de la soumission de l'avis:", error);
                 alert("Une erreur s'est produite. Veuillez réessayer.");
             }
-        },
+        }
+        
     }));
 });

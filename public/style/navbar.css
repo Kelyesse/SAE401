@@ -152,4 +152,14 @@
         border-top: 1px solid #555;
         font-size: 16px;
     }
+
+    #logout-button{
+        border: none;
+        background-color: #960f26;
+    }
+
+    #logout-button img{
+        width: 20px;
+        filter: invert();
+    }
 }

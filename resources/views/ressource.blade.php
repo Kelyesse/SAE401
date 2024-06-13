@@ -34,7 +34,9 @@
                         x-bind:style="{ backgroundColor: ressource.statut === 'disponible' ? 'green' : 'red' }"></div>
                     <p class="available-text" x-text="'Cette ressource est ' + ressource.statut"></p>
                 </div>
-                <button class="btn-reserve">Réserver</button>
+                <div id="submitInputResa">
+                    <button class="btn-reserve">Réserver</button>
+                </div>
             </div>
         </div>
     </div>
@@ -43,11 +45,13 @@
 
     <div id="section-avis" x-data="ressource">
 
-        <div class="review-form" x-show="isUserLoggedIn" x-init="checkUserLoggedIn">
-            <h2>Donnez votre avis</h2>
-            <textarea x-model="newReview.commentaire" placeholder="Écrivez votre avis ici"></textarea>
-            <button @click="submitReview">Envoyer</button>
-        </div>
+    <div class="review-form" x-show="isUserLoggedIn" x-init="checkUserLoggedIn">
+        <h2>Donnez votre avis</h2>
+        <textarea x-model="newReview.commentaire" placeholder="Écrivez votre avis ici"></textarea>
+        <input type="number" x-model.number="newReview.note" name="note" id="noteInput" min="1" max="5" style="width:80px;" placeholder="Note">
+        <button @click="submitReview">Envoyer</button>
+    </div>
+
 
 
         <div class="liste-avis" x-init="fetchRatings()">
