@@ -32,7 +32,7 @@
             <a href="/catalogue" class="rubrique_mobile">Catalogue</a>
             <a href="/contact" class="rubrique_mobile">Contact</a>
             <a href="/compte" class="rubrique_mobile">Compte</a>
-            
+
         </div>
     </header>
 

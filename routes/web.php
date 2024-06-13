@@ -6,7 +6,7 @@ use App\Http\Controllers\RessourceController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ReservationController;
-
+use App\Http\Controllers\BibliothecaireController;
 
 Route::get('/', function () {
     return view('index');
@@ -20,22 +20,18 @@ Route::get('/catalogue', function () {
     return view('catalogue');
 });
 
-//Compte
+// Compte
 Route::get('/compte', [AuthController::class, 'accountRedirection'])->name('compte');
 
 Route::get('/reservations', function () {
     return view('reservations');
-});
-Route::get('/reservations-biblio', function () {
-    return view('reservations-biblio');
 });
 
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-//Fin compte
-
+// Ressource
 Route::get('/ressource', function () {
     return view('ressource');
 });
@@ -44,52 +40,32 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-
-
-
 Route::get('/api/ressources', [CatalogueController::class, 'getAllRessources']);
 Route::get('/api/ressources/search', [CatalogueController::class, 'searchRessources']);
 Route::get('/api/ressources/filterOptions', [CatalogueController::class, 'getFilterOptions']);
 Route::get('/api/checkSession', [AuthController::class, 'checkSession']);
 Route::post('/api/add-review', [RessourceController::class, 'addReview']);
 
-
 Route::get('/api/user', [AuthController::class, 'getUserInfos']);
 Route::put('/api/user/{id}', [AuthController::class, 'updateUserInfos'])->name('user.update');
 
-
 Route::get('/api/reservations', [ReservationController::class, 'getReservations']);
-
-
-
-
-
-
 Route::get('/api/ressources/homepage', [CatalogueController::class, 'getHomepageRessources']);
 
-
-
 Route::get('/api/ressource', [RessourceController::class, 'getRessource']);
-
 Route::get('/ressource/getRatings', [RessourceController::class, 'getRatings']);
 
-
-//Contact//
-
+// Contact
 Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
 Route::post('/contact', [ContactController::class, 'sendMail'])->name('contact.send');
 
-//Fin-contact//
-
-//Admin//
-
-// Route::get('/admin', [AuthController::class, 'adminDashboard'])->name('admin.dashboard');
-
+// Admin
 Route::get('/admin', [AuthController::class, 'adminDashboard'])->name('admin.dashboard');
 Route::put('/admin/update/{id}', [AuthController::class, 'updateUser'])->name('admin.update');
 Route::delete('/admin/delete/{id}', [AuthController::class, 'deleteUser'])->name('admin.delete');
 
-
-
-
-//Fin-Admin//
+// Bibliothécaire
+Route::get('/reservations-biblio', [BibliothecaireController::class, 'index'])->name('bibliothecaire.index');
+Route::get('/api/reservations', [BibliothecaireController::class, 'getReservations']);
+Route::get('/api/resources', [BibliothecaireController::class, 'getResources']);
+Route::post('/api/resources', [BibliothecaireController::class, 'addResource']);

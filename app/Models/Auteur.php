@@ -19,6 +19,11 @@ class Auteur extends Model
 
     public $timestamps = true;
 
+    public function auteur()
+{
+    return $this->belongsTo(Auteur::class);
+}
+
     // Relation avec le pays de nationalité
     public function nationalite()
     {
