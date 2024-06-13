@@ -149,7 +149,6 @@
 
 .ressource-container {
     display: flex;
-    align-items: center;
     gap: 15px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
