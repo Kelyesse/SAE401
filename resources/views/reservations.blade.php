@@ -29,7 +29,7 @@
         </div>
         <div class="info-container">
             <img src="./storage/icone-email.png" alt="" class="email-icon">
-            <input type="email" class="info-email" x-model="userInfos.email" :readonly="!isEditing" :class="isEditing ? 'editing' : ''" />
+            <input type="email" class="info-email" id="info-email" x-model="userInfos.email" :readonly="!isEditing" :class="isEditing ? 'editing' : ''" />
             <template x-if="!isEditing">
                 <img src="./storage/icone-modifier.png" alt="" class="edit-icon" @click="editField('email')" />
             </template>
@@ -58,10 +58,12 @@
         </div>
         <div class="info-container">
             <img src="./storage/icone-lieu.png" alt="" class="lieu-icon">
-            <input type="text" class="info-adresse" x-model="userInfos.adresse" :readonly="!isEditing" :class="isEditing ? 'editing' : ''" />
-            <input type="text" class="info-code_postal" x-model="userInfos.code_postal" :readonly="!isEditing"
-                :class="isEditing ? 'editing' : ''" />
-            <input type="text" class="info-ville" x-model="userInfos.ville" :readonly="!isEditing" :class="isEditing ? 'editing' : ''" />
+            <input type="text" class="info-adresse" id="info-adresse" x-model="userInfos.adresse" :readonly="!isEditing" :class="isEditing ? 'editing' : ''" />
+            <div class="inputs-lieu">
+                <input type="text" class="info-code_postal" x-model="userInfos.code_postal" :readonly="!isEditing"
+                    :class="isEditing ? 'editing' : ''" />
+                <input type="text" class="info-ville" x-model="userInfos.ville" :readonly="!isEditing" :class="isEditing ? 'editing' : ''" />
+            </div>
             <template x-if="!isEditing">
                 <img src="./storage/icone-modifier.png" alt="" class="edit-icon"
                     @click="editField('adresse', 'code_postal', 'ville')" />

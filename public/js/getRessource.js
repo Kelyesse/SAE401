@@ -3,7 +3,15 @@ document.addEventListener("alpine:init", () => {
         ressource: [],
         ratings: [],
         numberOfRatings: 0,
-        newReview: { text: "" },
+        newReview: {
+            commentaire: "",
+            id_utilisateur: null, // Mettez à jour cela avec l'ID de l'utilisateur connecté
+            id_livre: null, // Mettez à jour cela avec l'ID du livre ou DVD
+            id_dvd: null, // Mettez à jour cela avec l'ID du livre ou DVD
+            type_ressource: "", // Mettez à jour cela avec le type (livre ou dvd)
+            note: null,
+            date_note: new Date().toISOString().slice(0, 10), // Date du jour
+        },
         isUserLoggedIn: false,
 
         async fetchRessource() {
@@ -55,11 +63,6 @@ document.addEventListener("alpine:init", () => {
             }
         },
 
-        async submitReview() {
-            // Logique pour soumettre un avis
-            console.log("Submit Review:", this.newReview.text);
-        },
-
         async checkUserLoggedIn() {
             try {
                 const response = await fetch(`/api/checkSession`);
@@ -75,34 +78,49 @@ document.addEventListener("alpine:init", () => {
             }
         },
 
-        submitReview() {
-            fetch("/api/add-review", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": "{{ csrf_token() }}", // Utilisez le jeton CSRF pour protéger contre les attaques CSRF
-                },
-                body: JSON.stringify({
-                    commentaire: this.newReview.text,
-                }),
-            })
-                .then((response) => {
-                    if (response.ok) {
-                        // Réussite, effacez le contenu du champ de texte après l'envoi de l'avis
-                        this.newReview.text = "";
-                        // Vous pouvez également mettre à jour les avis affichés si nécessaire
-                        // Par exemple, en rappelant la méthode fetchRatings() pour obtenir les derniers avis
-                    } else {
-                        // Gestion des erreurs si nécessaire
-                        console.error(
-                            "Failed to submit review:",
-                            response.statusText
-                        );
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error submitting review:", error);
+        async submitReview() {
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const isbn = params.get("isbn");
+                const ian = params.get("ian");
+                const id = params.get("id");
+        
+                // Définir le type de ressource et l'ID associé
+                if (ian) {
+                    this.newReview.type_ressource = "dvd";
+                    this.newReview.id_dvd = id;
+                } else if (isbn) {
+                    this.newReview.type_ressource = "livre";
+                    this.newReview.id_livre = id;
+                }
+        
+                // Note et commentaire sont maintenant définis par les inputs
+                console.log("Submitting review:", this.newReview);
+        
+                const response = await fetch("/api/add-review", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                    },
+                    body: JSON.stringify(this.newReview),
                 });
-        },
+        
+                if (response.ok) {
+                    // Réinitialiser le formulaire après un envoi réussi
+                    this.newReview.commentaire = "";
+                    this.newReview.note = null;
+                    alert("Avis ajouté avec succès !");
+                    // Recharger les avis ou rafraîchir la page si nécessaire
+                } else {
+                    console.error("Échec de l'ajout de l'avis:", response.statusText);
+                    alert("Erreur lors de l'ajout de l'avis. Veuillez réessayer.");
+                }
+            } catch (error) {
+                console.error("Erreur lors de la soumission de l'avis:", error);
+                alert("Une erreur s'est produite. Veuillez réessayer.");
+            }
+        }
+        
     }));
 });
