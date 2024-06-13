@@ -24,7 +24,7 @@ document.addEventListener("alpine:init", () => {
                 this.isFiltered = false;
             } catch (error) {
                 console.error(
-                    "Une erreur s'est produite lors de la récupération des livres:",
+                    "Une erreur s'est produite lors de la récupération des ressources:",
                     error
                 );
             }

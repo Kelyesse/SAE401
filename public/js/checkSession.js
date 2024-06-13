@@ -1,18 +1,13 @@
 document.addEventListener("alpine:init", () => {
     Alpine.data("session", () => ({
-        isUserLoggedIn: false, 
+        isUserLoggedIn: false,
 
         async checkUserLoggedIn() {
-
-            
             try {
                 const response = await fetch(`/api/checkSession`);
                 const data = await response.json();
-                console.log(data);
-                if(data.nom)
-                {   
+                if (data.nom) {
                     this.isUserLoggedIn = true; // Remplacer par votre logique réelle
-                    console.log('badojazo');
                 }
             } catch (error) {
                 console.error(
@@ -21,8 +16,5 @@ document.addEventListener("alpine:init", () => {
                 );
             }
         },
-
-        
     }));
-
 });

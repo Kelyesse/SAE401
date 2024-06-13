@@ -1,10 +1,11 @@
 @extends('layouts.layout')
 
+@section('title', 'POLYMEDIA - Accueil')
+
 @section('content')
 
 
 <head>
-    <title>Homepage</title>
     <link rel="stylesheet" href="./style/homepage.css"> <!-- Adjust path to css -->
     <script src="./js/faq.js"></script>
     <script src="./js/getRessources.js"></script>
@@ -42,7 +43,8 @@
                 <template x-for="ressource in homepageRessources.favorite_ressources">
                     <template x-if="ressource.imgUrl">
                         <a :href="'./ressource?' + (ressource . isbn ? 'isbn=' + ressource . isbn : 'ian=' + ressource . ian) + '&id=' + ressource . id" class="ressource-item">
-                            <img class="ressource-img" :src="'./storage/' + ressource . imgUrl" alt="Image du livre">
+                            <img class="ressource-img" :src="'./storage/' + ressource . imgUrl"
+                                alt="Image de la ressource">
                             <div class="ressource-title" x-text="ressource.titre"></div>
                             <div class="ressource-year" x-text="ressource.annee"></div>
                         </a>
@@ -60,7 +62,8 @@
                 <template x-for="ressource in homepageRessources.new_ressources">
                     <template x-if="ressource.imgUrl">
                         <a :href="'./ressource?' + (ressource . isbn ? 'isbn=' + ressource . isbn : 'ian=' + ressource . ian) + '&id=' + ressource . id" class="ressource-item">
-                            <img class="ressource-img" :src="'./storage/' + ressource . imgUrl" alt="Image du livre">
+                            <img class="ressource-img" :src="'./storage/' + ressource . imgUrl"
+                                alt="Image de la ressource">
                             <div class="ressource-title" x-text="ressource.titre"></div>
                             <div class="ressource-year" x-text="ressource.annee"></div>
                         </a>
@@ -78,7 +81,8 @@
                 <template x-for="ressource in homepageRessources.books">
                     <template x-if="ressource.imgUrl">
                         <a :href="'./ressource?' + (ressource . isbn ? 'isbn=' + ressource . isbn : 'ian=' + ressource . ian) + '&id=' + ressource . id" class="ressource-item">
-                            <img class="ressource-img" :src="'./storage/' + ressource . imgUrl" alt="Image du livre">
+                            <img class="ressource-img" :src="'./storage/' + ressource . imgUrl"
+                                alt="Image de la ressource">
                             <div class="ressource-title" x-text="ressource.titre"></div>
                             <div class="ressource-year" x-text="ressource.annee"></div>
                         </a>
@@ -96,7 +100,8 @@
                 <template x-for="ressource in homepageRessources.movies">
                     <template x-if="ressource.imgUrl">
                         <a :href="'./ressource?' + (ressource . isbn ? 'isbn=' + ressource . isbn : 'ian=' + ressource . ian) + '&id=' + ressource . id" class="ressource-item">
-                            <img class="ressource-img" :src="'./storage/' + ressource . imgUrl" alt="Image du livre">
+                            <img class="ressource-img" :src="'./storage/' + ressource . imgUrl"
+                                alt="Image de la ressource">
                             <div class="ressource-title" x-text="ressource.titre"></div>
                             <div class="ressource-year" x-text="ressource.annee"></div>
                         </a>

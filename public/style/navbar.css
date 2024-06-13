@@ -67,7 +67,6 @@
     
     
     #icone_compte {
-        margin-top: 10px;
         width: 30px;
     }
 
@@ -83,7 +82,9 @@
     #logout-button img{
         width: 30px;
         filter: invert();
-
+    }
+    #logout-button:hover{
+        cursor: pointer;
     }
     
     

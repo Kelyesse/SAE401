@@ -5,6 +5,8 @@ use App\Http\Controllers\CatalogueController;
 use App\Http\Controllers\RessourceController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ReservationController;
+
 
 Route::get('/', function () {
     return view('index');
@@ -19,9 +21,14 @@ Route::get('/catalogue', function () {
 });
 
 //Compte
-Route::get('/compte', function () {
-    return view('compte');
-})->name('compte');
+Route::get('/compte', [AuthController::class, 'accountRedirection'])->name('compte');
+
+Route::get('/reservations', function () {
+    return view('reservations');
+});
+Route::get('/reservations-biblio', function () {
+    return view('reservations-biblio');
+});
 
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
@@ -45,6 +52,15 @@ Route::get('/api/ressources/search', [CatalogueController::class, 'searchRessour
 Route::get('/api/ressources/filterOptions', [CatalogueController::class, 'getFilterOptions']);
 Route::get('/api/checkSession', [AuthController::class, 'checkSession']);
 Route::post('/api/add-review', [RessourceController::class, 'addReview']);
+
+
+Route::get('/api/user', [AuthController::class, 'getUserInfos']);
+Route::put('/api/user/{id}', [AuthController::class, 'updateUserInfos'])->name('user.update');
+
+
+Route::get('/api/reservations', [ReservationController::class, 'getReservations']);
+
+
 
 
 

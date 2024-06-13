@@ -11,6 +11,7 @@ use App\Models\Auteur;
 use App\Models\Realisateur;
 use App\Models\Note;
 use App\Models\User; // Assurez-vous d'importer le modèle User
+use Throwable;
 
 
 class RessourceController extends Controller
@@ -53,14 +54,14 @@ class RessourceController extends Controller
         try {
             if ($isbn) {
                 $avis = Note::select('note.*', 'utilisateurs.prenom', 'utilisateurs.nom')
-                            ->join('utilisateurs', 'note.id_utilisateur', '=', 'utilisateurs.id')
-                            ->where('id_livre', $id)
-                            ->get();
+                    ->join('utilisateurs', 'note.id_utilisateur', '=', 'utilisateurs.id')
+                    ->where('id_livre', $id)
+                    ->get();
             } else {
                 $avis = Note::select('note.*', 'utilisateurs.prenom', 'utilisateurs.nom')
-                            ->join('utilisateurs', 'note.id_utilisateur', '=', 'utilisateurs.id')
-                            ->where('id_dvd', $id)
-                            ->get();
+                    ->join('utilisateurs', 'note.id_utilisateur', '=', 'utilisateurs.id')
+                    ->where('id_dvd', $id)
+                    ->get();
             }
 
             if ($avis->isEmpty()) {
@@ -68,7 +69,7 @@ class RessourceController extends Controller
             }
 
             return response()->json($avis);
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             return response()->json(['error' => 'Internal Server Error'], 500);
         }
     }
@@ -101,7 +102,7 @@ class RessourceController extends Controller
 
             // Répondre avec succès
             return response()->json(['message' => 'Review added successfully'], 200);
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             // En cas d'erreur, répondre avec une erreur
             return response()->json(['error' => 'Failed to add review'], 500);
         }
