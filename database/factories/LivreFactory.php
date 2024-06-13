@@ -35,7 +35,7 @@ class LivreFactory extends Factory
             'nombre_pages' => $this->faker->numberBetween(100, 1000),
             'annee' => $this->faker->year,
             'statut' => $this->faker->randomElement(['disponible', 'indisponible']),
-            'id_langue' => Langue::factory(),
+            'id_langue' => $this->faker->numberBetween(1, 5),
             'nombre_exemplaires' => $this->faker->numberBetween(1, 10),
             'imgUrl' => $this->faker->imageUrl(200, 300, 'books', true, 'Faker'),
             'description' => $this->faker->paragraph,

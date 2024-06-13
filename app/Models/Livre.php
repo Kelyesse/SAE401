@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Livre extends Model
 {
+    use HasFactory;
     protected $table = 'livres';
 
     protected $primaryKey = 'id';
@@ -30,9 +32,9 @@ class Livre extends Model
 
 
     public function avis()
-{
-    return $this->hasMany(Note::class, 'id_livre', 'id');
-}
+    {
+        return $this->hasMany(Note::class, 'id_livre', 'id');
+    }
 
     public function editeur()
     {
