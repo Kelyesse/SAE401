@@ -78,30 +78,29 @@ class RessourceController extends Controller
     {
         $request->validate([
             'commentaire' => 'required|string',
-            'id_utilisateur' => 'required|exists:utilisateurs,id',
             'id_livre' => 'nullable|exists:livres,id',
             'id_dvd' => 'nullable|exists:dvds,id',
             'type_ressource' => 'required|in:livre,dvd',
             'note' => 'required|numeric|min:0|max:5',
             'date_note' => 'required|date',
         ]);
+        $user = Auth::user();
 
         try {
             // Créer un nouvel avis dans la table note avec les données fournies
             $review = new Note();
-            $review->fill($request->only([
-                'commentaire',
-                'id_utilisateur',
-                'id_livre',
-                'id_dvd',
-                'type_ressource',
-                'note',
-                'date_note',
-            ]));
+            $review->commentaire = $request->input('commentaire');
+            $review->id_utilisateur = $user->id;
+            $review->id_livre = $request->input('id_livre');
+            $review->id_dvd = $request->input('id_dvd');
+            $review->type_ressource = $request->input('type_ressource');
+            $review->note = $request->input('note');
+            $review->date_note = $request->input('date_note');
             $review->save();
 
+
             // Répondre avec succès
-            return response()->json(['message' => 'Review added successfully'], 200);
+            return response()->json(['request_data' => $request->all()], 200);
         } catch (Throwable $e) {
             // En cas d'erreur, répondre avec une erreur
             return response()->json(['error' => 'Failed to add review'], 500);
