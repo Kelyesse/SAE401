@@ -1,10 +1,12 @@
 document.addEventListener("alpine:init", () => {
     Alpine.data("reservations", () => ({
         reservations: [],
+        isResponseEmpty: false,
         async fetchReservations() {
             try {
                 const response = await fetch("/api/reservations");
                 const data = await response.json();
+                this.isResponseEmpty = data.length === 0;
                 this.reservations = data;
             } catch (error) {
                 console.error(

@@ -6,6 +6,20 @@ body {
     padding: 0;
 }
 
+
+.no-ressources-message{
+    font-size: 18px;
+    font-family: 'stara-medium';
+    margin: 50px 0px;
+}
+
+.explore-catalog-button{
+    color: var(--primary-color);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
 @media screen and (min-width:1000px) {
 
     .container {
@@ -30,12 +44,14 @@ body {
     }
     
     .user-infos{
-    margin-top: 40px;
+        margin-top: 20px;
+    padding: 40px 20px; 
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    margin-left: 20px;
     gap: 40px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
     }
     
     .user-icon{
@@ -73,12 +89,12 @@ body {
 
     #info-email
     {
-        width: 200px;
+        width: 250px;
     }
 
     #info-adresse
     {
-        width: 300px;
+        width: 250px;
     }
 
     
@@ -192,7 +208,7 @@ body {
         scroll-snap-type: x mandatory;
         scroll-behavior: smooth;
         max-width: 800px;
-    }
+}
     
     .ressource-container::-webkit-scrollbar-track
     {
@@ -245,12 +261,12 @@ body {
     }
     
     .user-infos{
-    margin-top: 40px;
+    padding: 40px 20px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    margin-left: 20px;
     gap: 40px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
     }
     
     .user-icon{

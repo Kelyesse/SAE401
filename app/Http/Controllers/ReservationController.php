@@ -7,6 +7,7 @@ use App\Models\Reservation;
 use App\Models\Livre;
 use App\Models\Dvd;
 use App\Models\Utilisateur;
+use Throwable;
 
 class ReservationController extends Controller
 {
@@ -19,7 +20,6 @@ class ReservationController extends Controller
 
         // Récupérer toutes les réservations de l'utilisateur
         $reservations = Reservation::where('id_utilisateur', $user->id)->get();
-
         // Initialiser un tableau pour stocker les réservations avec les détails du livre ou du DVD
         $reservationsWithDetails = [];
 
@@ -80,5 +80,38 @@ class ReservationController extends Controller
 
         // Retourner les réservations avec les détails du livre ou du DVD en tant que réponse JSON
         return response()->json($reservationsWithDetails);
+    }
+
+    public function makeReservation(Request $request)
+    {
+        $request->validate([
+            'id_livre' => 'nullable|exists:livres,id',
+            'id_dvd' => 'nullable|exists:dvds,id',
+            'type_ressource' => 'required|in:livre,dvd',
+            'date_debut' => 'required|date',
+            'date_retour_prevue' => 'required|date',
+
+        ]);
+        $user = Auth::user();
+
+        try {
+            // Créer un nouvel avis dans la table note avec les données fournies
+            $reservation = new Reservation();
+            $reservation->id_utilisateur = $user->id;
+            $reservation->id_livre = $request->input('id_livre');
+            $reservation->id_dvd = $request->input('id_dvd');
+            $reservation->type_ressource = $request->input('type_ressource');
+            $reservation->date_debut = $request->input('date_debut');
+            $reservation->date_retour_prevue = $request->input('date_retour_prevue');
+            $reservation->statut = 'emprunté';
+
+            $reservation->save();
+
+            // Répondre avec succès
+            return response()->json(['request_data' => $request->all()], 200);
+        } catch (Throwable $e) {
+            // En cas d'erreur, répondre avec une erreur
+            return response()->json(['error' => 'Failed to add review'], 500);
+        }
     }
 }

@@ -53,6 +53,8 @@ Route::put('/api/user/{id}', [AuthController::class, 'updateUserInfos'])->name('
 
 Route::get('/api/reservations', [ReservationController::class, 'getReservations']);
 Route::get('/api/reservations/all', [ReservationController::class, 'getAllReservations']);
+Route::post('/api/reservations/make', [ReservationController::class, 'makeReservation']);
+
 
 Route::get('/api/ressources/homepage', [CatalogueController::class, 'getHomepageRessources']);
 
@@ -70,4 +72,3 @@ Route::delete('/admin/delete/{id}', [AuthController::class, 'deleteUser'])->name
 
 // Bibliothécaire
 Route::get('/reservations-biblio', [BibliothecaireController::class, 'index'])->name('bibliothecaire.index');
-Route::get('/api/reservations', [BibliothecaireController::class, 'getReservations']);
