@@ -16,11 +16,11 @@
     <div class="form-container" x-data="{ showRegister: false }">
         @if(session('msg') == 'register')
         <div class="alert alert-success">
-            Compte créé avec succès, merci d'attendre validation de l'administrateur !
+            Compte créé avec succès !
         </div>
         @elseif(session('msg') == 'off')
         <div class="alert alert-warning">
-            Merci d'attendre validation de l'administrateur !
+            Merci de contacter l'administrateur !
         </div>
         @elseif(session('msg') == 'iuser')
         <div class="alert alert-danger">
@@ -29,6 +29,16 @@
         @elseif(session('msg') == 'logout')
         <div class="alert alert-success text-center" role="alert">
             Déconnexion réussie !
+        </div>
+        @endif
+
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
         @endif
 
