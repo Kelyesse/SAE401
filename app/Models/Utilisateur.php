@@ -29,6 +29,10 @@ class Utilisateur extends Authenticatable
         'mot_de_passe',
     ];
 
+    protected $attributes = [
+        'type_utilisateur' => 'utilisateur', // Rôle par défaut
+    ];
+
     public function getAuthPassword()
     {
         return $this->mot_de_passe;

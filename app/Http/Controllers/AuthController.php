@@ -19,7 +19,6 @@ class AuthController extends Controller
             'adresse' => 'required|string|max:255',
             'ville' => 'required|string|max:255',
             'code_postal' => 'required|string|max:10',
-            'statut' => 'required|string',
         ]);
 
         Utilisateur::create([
@@ -31,7 +30,6 @@ class AuthController extends Controller
             'ville' => $request->ville,
             'code_postal' => $request->code_postal,
             'complement' => $request->complement,
-            'type_utilisateur' => $request->statut,
         ]);
 
         return redirect()->route('compte')->with('msg', 'register');
