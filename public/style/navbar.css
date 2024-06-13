@@ -5,6 +5,13 @@
     box-sizing: border-box;
 }
 
+#logo_desktop {
+    font-family:'stara';
+    font-size: 32px;
+    color: #fff;
+    text-decoration: none;
+}
+
 @media screen and (min-width: 1000px) {
 
     #navbar {
@@ -16,13 +23,7 @@
         height: 100px;
         background-color: #960f26;
     }
-    
-    #logo_desktop {
-        font-family:'stara';
-        font-size: 32px;
-        color: #fff;
-        text-decoration: none;
-    }
+  
 
     #rubriques a {
         font-family: 'stara-bold';
@@ -66,12 +67,24 @@
     
     
     #icone_compte {
-        margin-top: 10px;
         width: 30px;
     }
 
     #menu_burger {
         display: none;
+    }
+
+    #logout-button{
+        border: none;
+        background-color: #960f26;
+    }
+
+    #logout-button img{
+        width: 30px;
+        filter: invert();
+    }
+    #logout-button:hover{
+        cursor: pointer;
     }
     
     

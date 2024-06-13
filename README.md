@@ -26,3 +26,7 @@ php artisan db:wipe
 # Lancer le serveur en local
 
 php artisan serve
+
+# Lancer le serveur et autoriser les connexions (EC2 Instance)
+
+php artisan serve --host=0.0.0.0 --port=8000

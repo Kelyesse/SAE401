@@ -54,16 +54,14 @@ class AuthController extends Controller
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->mot_de_passe])) {
             $user = Auth::user();
-            // if ($user->statut == 'off') {
-            //     Auth::logout();
-            //     return redirect()->route('compte')->with('msg', 'off');
-            // }
 
             // Redirection en fonction du type d'utilisateur
             if ($user->type_utilisateur == 'admin') {
                 return redirect('/admin');
-            } else {
-                return redirect()->route('index');
+            } elseif ($user->type_utilisateur == 'utilisateur') {
+                return redirect('/reservations');
+            } elseif ($user->type_utilisateur == 'bibliothecaire') {
+                return redirect('/reservations-biblio');
             }
         }
 
@@ -74,6 +72,13 @@ class AuthController extends Controller
     {
         Auth::logout();
         return redirect()->route('compte')->with('msg', 'logout');
+    }
+
+
+    public function checkSession()
+    {
+        $user = Auth::user();
+        return response()->json($user);
     }
 
     public function adminDashboard()
@@ -128,5 +133,53 @@ class AuthController extends Controller
         }
 
         return redirect('/')->with('error', 'You do not have access to this section');
+
+    }
+    public function accountRedirection()
+    {
+        $user = Auth::user();
+        if ($user && $user->type_utilisateur) {
+            if ($user->type_utilisateur == 'utilisateur') {
+                return redirect('/reservations');
+            } elseif ($user->type_utilisateur == 'bibliothecaire') {
+                return redirect('/reservations-biblio');
+            }
+        } else {
+            return view('compte');
+        }
+    }
+
+    public function getUserInfos()
+    {
+        $user = Auth::user();
+        return response()->json($user);
+    }
+    public function updateUserInfos(Request $request, $id)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'prenom' => 'nullable|string|max:255',
+            'nom' => 'nullable|string|max:255',
+            'email' => 'nullable|string|email|max:255|unique:utilisateurs,email,' . $user->id,
+            'adresse' => 'nullable|string|max:255',
+            'ville' => 'nullable|string|max:255',
+            'code_postal' => 'nullable|string|max:10',
+            'complement' => 'nullable|string|max:255',
+            'mot_de_passe' => 'nullable|string|min:8|confirmed',
+        ]);
+
+        // Mettez à jour les champs fournis dans la requête
+        $utilisateur = Utilisateur::find($id);
+
+
+        $utilisateur->update($request->except(['mot_de_passe']));
+
+        if ($request->filled('mot_de_passe')) {
+            $utilisateur->mot_de_passe = Hash::make($request->mot_de_passe);
+            $utilisateur->save();
+        }
+
+        return response()->json(['success' => 'Informations mises à jour avec succès'], 200);
     }
 }

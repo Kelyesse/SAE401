@@ -4,21 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="./style/navbar.css" />
     <link rel="stylesheet" href="./style/footer.css" />
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js"></script>
+    <script src="./js/checkSession.js"></script>
 </head>
 
 <body>
 
     <header id="barnav" x-data="{ menuOpen: false }">
-        <div id="navbar">
+        <div id="navbar" x-data="session">
             <a href="/" id="logo_desktop">POLYMEDIA</a>
             <div id="rubriques">
                 <a href="/catalogue" id="rubrique_web">Catalogue</a>
                 <a href="/contact" id="rubrique_web">Contact</a>
                 <a href="/compte"><img src="./storage/compte.svg" alt="Compte" id="icone_compte" /></a>
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <button type="submit" id="logout-button" x-show="isUserLoggedIn" x-init="checkUserLoggedIn"><img src="/storage/deconnexion2.png" alt=""></button>
+                </form>
             </div>
             <img src="./storage/menu.png" alt="Menu" id="menu_burger" @click="menuOpen = !menuOpen" />
         </div>
@@ -26,6 +32,7 @@
             <a href="/catalogue" class="rubrique_mobile">Catalogue</a>
             <a href="/contact" class="rubrique_mobile">Contact</a>
             <a href="/compte" class="rubrique_mobile">Compte</a>
+            
         </div>
     </header>
 

@@ -24,7 +24,7 @@ document.addEventListener("alpine:init", () => {
                 this.isFiltered = false;
             } catch (error) {
                 console.error(
-                    "Une erreur s'est produite lors de la récupération des livres:",
+                    "Une erreur s'est produite lors de la récupération des ressources:",
                     error
                 );
             }
@@ -77,6 +77,26 @@ document.addEventListener("alpine:init", () => {
                 realisateur: "",
             }),
                 this.fetchAllRessources();
+        },
+        redirectToCatalog() {
+            if (
+                window.location.pathname == "/index" ||
+                window.location.pathname == "/"
+            ) {
+                window.location.href =
+                    "/catalogue?searchQuery=" + this.filters.searchQuery;
+            }
+            return;
+        },
+        init() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get("searchQuery");
+            if (searchQuery) {
+                this.filters.searchQuery = searchQuery;
+                this.fetchFilteredRessources();
+            } else {
+                this.fetchAllRessources();
+            }
         },
     }));
 });

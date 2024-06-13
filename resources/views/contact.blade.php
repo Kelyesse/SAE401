@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Contact')
+@section('title', 'POLYMEDIA - Contact')
 
 @section('content')
 
@@ -19,19 +19,19 @@
 </div>
 
 @if ($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
 @endif
 
 @if (session('success'))
-<div class="alert alert-success">
-    {{ session('success') }}
-</div>
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
 @endif
 
 <form id="section-formulaire" action="{{ route('contact.send') }}" method="post">

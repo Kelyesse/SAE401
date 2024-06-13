@@ -58,6 +58,7 @@
             <p>Première visite sur Polymedia ? <a href="#" @click="showRegister = true">Inscription</a></p>
         </div>
 
+
         <div x-show="showRegister" style="display: none;">
             <h1>Inscription</h1>
             <form action="{{ route('register') }}" method="post">
@@ -85,4 +86,16 @@
         </div>
     </div>
 </div>
+
+<script>
+    const logout = async() => {
+        const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    };
+        return await fetch('/logout',options);
+    }
+</script>
 @endsection

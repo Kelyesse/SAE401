@@ -27,6 +27,13 @@ class Livre extends Model
     {
         return $this->belongsTo(Auteur::class, 'id_auteur', 'id');
     }
+
+
+    public function avis()
+{
+    return $this->hasMany(Note::class, 'id_livre', 'id');
+}
+
     public function editeur()
     {
         return $this->belongsTo(Editeur::class, 'id_editeur', 'id');

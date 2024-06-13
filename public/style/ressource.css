@@ -107,11 +107,22 @@ body {
 
 
 #section-avis{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: #010423;
+    margin-top: -50px;
+    gap: 50px;
 }
 
-.review-form h2 {
+.review-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#section-avis h2 {
     margin-bottom: 10px;
+    font-family: 'stara-bold';
     color: #fff;
 }
 
@@ -120,7 +131,7 @@ body {
     height: 100px;
     margin-bottom: 10px;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 2px solid #960F26;
     border-radius: 5px;
     background-color: #010423;
     color: #ffffff;
@@ -129,19 +140,43 @@ body {
 .review-form button {
     background-color: #960F26;
     color: #ffffff;
+    width: 100px;
     padding: 10px 20px;
     border: none;
     cursor: pointer;
     font-size: 16px;
     border-radius: 5px;
+    margin: auto;
+    font-family: 'stara-bold';
 }
 
 .review-form button:hover {
     background-color: #b31232;
 }
 
-.reviews {
+.liste-avis {
+    width: 600px;
+    margin-bottom: 100px;
+}
+
+.liste-avis h2 {
+    border-bottom: 2px solid #960F26;
+    width: 100px;
+}
+
+.avis {
     margin: 20px 0;
+    font-size: 14px;
+    color: #fff;
+    font-family: 'stara-medium';
+}
+
+.ressource-title {
+    padding: 20px;
+    border: 2px solid #960F26;
+    margin: 20px 0;
+    border-radius: 10px;
+    width: 600px;
 }
 
 .review {
