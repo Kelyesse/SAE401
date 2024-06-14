@@ -20,7 +20,10 @@ class Dvd extends Model
         'nombre_exemplaires',
         'id_langue',
         'duree',
+        'description',
         'sous_titres',
+        'id_casting',
+        'imgUrl'
     ];
 
     // Relation avec le réalisateur

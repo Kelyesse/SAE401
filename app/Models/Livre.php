@@ -23,6 +23,8 @@ class Livre extends Model
         'statut',
         'id_langue',
         'nombre_exemplaires',
+        'imgUrl',
+        'description',
     ];
 
     public function auteur()

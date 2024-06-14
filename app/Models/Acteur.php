@@ -12,9 +12,6 @@ class Acteur extends Model
 
     protected $fillable = [
         'nom',
-        'prenom',
-        'biographie',
-        'id_nationalite',
     ];
 
     // Relation avec la nationalité de l'acteur

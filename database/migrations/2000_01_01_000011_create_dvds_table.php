@@ -19,13 +19,13 @@ class CreateDvdsTable extends Migration
             $table->unsignedBigInteger('id_realisateur');
             $table->enum('genre', ['Action', 'Romance', 'Science-fiction', 'Mystère', 'Thriller', 'Fantaisie', 'Aventure', 'Horreur', 'Dystopie', 'Humour', 'Jeunesse', 'Biographie', 'Histoire', 'Sciences naturelles', 'Sciences sociales', 'Psychologie', 'Économie', 'Politique', 'Religion']);
             $table->string('titre');
-            $table->unsignedBigInteger('id_casting');
+            $table->unsignedBigInteger('id_casting')->nullable();
             $table->year('annee');
             $table->enum('statut', ['disponible', 'indisponible']);
             $table->integer('nombre_exemplaires');
             $table->unsignedBigInteger('id_langue');
             $table->integer('duree');
-            $table->string('sous_titres');
+            $table->string('sous_titres')->nullable();
             $table->string('imgUrl');
             $table->text('description');
             $table->timestamps();
