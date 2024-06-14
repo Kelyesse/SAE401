@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\BibliothecaireController;
+use App\Http\Controllers\EditeurController;
 
 Route::get('/', function () {
     return view('index');
@@ -39,6 +40,8 @@ Route::get('/ressource', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+
+Route::get('/api/editeurs', [EditeurController::class, 'getEditeurs']);
 
 Route::get('/api/ressources', [CatalogueController::class, 'getAllRessources']);
 Route::get('/api/ressources/search', [CatalogueController::class, 'searchRessources']);

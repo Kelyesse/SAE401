@@ -17,18 +17,23 @@ class LanguesTableSeeder extends Seeder
         $langues = [
             [
                 'nom' => 'Français',
+                'code' => 'fr',
             ],
             [
                 'nom' => 'Anglais',
+                'code' => 'en',
             ],
             [
                 'nom' => 'Espagnol',
+                'code' => 'es',
             ],
             [
                 'nom' => 'Allemand',
+                'code' => 'de',
             ],
             [
                 'nom' => 'Italien',
+                'code' => 'it',
             ],
         ];
 

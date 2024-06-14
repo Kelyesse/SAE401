@@ -12,6 +12,10 @@ class Editeur extends Model
 
     protected $primaryKey = 'id'; // Clé primaire de la table
 
+    protected $fillable = [
+        'nom',
+    ];
+
 
     // Relation avec les livres publiés par cet éditeur
     public function livres()

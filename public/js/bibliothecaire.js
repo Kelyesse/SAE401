@@ -2,13 +2,22 @@ document.addEventListener("alpine:init", () => {
     Alpine.data("bibliothecaire", () => ({
         reservations: [],
         resources: [],
+        editeurs: [],
         newResource: {
             type: "livre",
             titre: "",
-            auteur: "",
-            editeur: "",
+            isbn: "",
+            ian: "",
+            genre: "",
+            nombre_pages: "",
             annee: "",
-            stock: "",
+            description: "",
+            langue: "",
+            auteur: "",
+            acteur: "",
+            realisateur: "",
+            editeur: "",
+            nombre_exemplaires: "",
         },
         filters: {
             searchQuery: "",
@@ -86,14 +95,6 @@ document.addEventListener("alpine:init", () => {
                 });
                 const data = await response.json();
                 if (data.success) {
-                    this.newResource = {
-                        type: "livre",
-                        titre: "",
-                        auteur: "",
-                        editeur: "",
-                        annee: "",
-                        stock: "",
-                    };
                     alert("Ressource ajoutée avec succès");
                     this.fetchAllResources();
                 } else {
@@ -131,9 +132,22 @@ document.addEventListener("alpine:init", () => {
                 return `En retard de ${-joursRestants} jours`;
             }
         },
+        async fetchEditeurs() {
+            try {
+                const response = await fetch("/api/editeurs");
+                const data = await response.json();
+                this.editeurs = data;
+            } catch (error) {
+                console.error(
+                    "Erreur lors de la récupération des ressources:",
+                    error
+                );
+            }
+        },
         init() {
             this.fetchReservations();
             this.fetchAllResources();
+            this.fetchEditeurs();
         },
     }));
 });

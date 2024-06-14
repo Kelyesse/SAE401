@@ -76,22 +76,53 @@
                 <input type="text" x-model="newResource.titre" placeholder="Titre">
                 <template x-if="newResource.type === 'livre'">
                     <div class="specific-fields">
-                        <input type="text" x-model="newResource.auteur" placeholder="Auteur">
-                        <input type="text" x-model="newResource.editeur" placeholder="Éditeur">
+                        <input type="text" x-model="newResource.auteur" placeholder="Nom de l'auteur">
+                        <select x-model="newResource.id_editeur">
+                            <option value="" disabled selected>Sélectionnez un éditeur</option>
+                            <template x-for="editeur in editeurs" :key="editeur . id">
+                                <option x-bind:value="editeur.nom" x-text="editeur.nom"></option>
+                            </template>
+                        </select>
+                        <input type="number" x-model="newResource.nombre_pages" placeholder="Nombre de pages">
                     </div>
                 </template>
-
                 <template x-if="newResource.type === 'dvd'">
                     <div class="specific-fields">
                         <input type="text" x-model="newResource.acteur" placeholder="Acteur">
                         <input type="text" x-model="newResource.realisateur" placeholder="Réalisateur">
                     </div>
                 </template>
+
+                <select x-model="newResource.genre">
+                    <option value="" disabled selected>Sélectionnez un genre</option>
+                    <option value="Action">Action</option>
+                    <option value="Drame">Drame</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Science-fiction">Science-fiction</option>
+                    <option value="Mystère">Mystère</option>
+                    <option value="Thriller">Thriller</option>
+                    <option value="Fantaisie">Fantaisie</option>
+                    <option value="Aventure">Aventure</option>
+                    <option value="Horreur">Horreur</option>
+                    <option value="Dystopie">Dystopie</option>
+                    <option value="Humour">Humour</option>
+                    <option value="Jeunesse">Jeunesse</option>
+                    <option value="Biographie">Biographie</option>
+                    <option value="Histoire">Histoire</option>
+                    <option value="Sciences naturelles">Sciences naturelles</option>
+                    <option value="Sciences sociales">Sciences sociales</option>
+                    <option value="Psychologie">Psychologie</option>
+                    <option value="Économie">Économie</option>
+                    <option value="Politique">Politique</option>
+                    <option value="Religion">Religion</option>
+                </select>
                 <input type="number" x-model="newResource.annee" placeholder="Année">
                 <input type="number" x-model="newResource.stock" placeholder="Stock">
+                <textarea x-model="newResource.description" placeholder="Description"></textarea>
                 <button type="submit">Ajouter au catalogue</button>
             </form>
         </div>
+
     </section>
 </main>
 

@@ -11,10 +11,6 @@ class CreateAuteursTable extends Migration
         Schema::create('auteurs', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->string('prenom');
-            $table->text('bibliographie')->nullable();
-            $table->unsignedBigInteger('id_nationalite');
-            $table->foreign('id_nationalite')->references('id')->on('pays');
             $table->timestamps();
         });
     }
