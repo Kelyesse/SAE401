@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\BibliothecaireController;
+use App\Http\Controllers\EditeurController;
 
 Route::get('/', function () {
     return view('index');
@@ -40,6 +41,8 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+Route::get('/api/editeurs', [EditeurController::class, 'getEditeurs']);
+
 Route::get('/api/ressources', [CatalogueController::class, 'getAllRessources']);
 Route::get('/api/ressources/search', [CatalogueController::class, 'searchRessources']);
 Route::get('/api/ressources/filterOptions', [CatalogueController::class, 'getFilterOptions']);
@@ -53,6 +56,8 @@ Route::put('/api/user/{id}', [AuthController::class, 'updateUserInfos'])->name('
 
 Route::get('/api/reservations', [ReservationController::class, 'getReservations']);
 Route::get('/api/reservations/all', [ReservationController::class, 'getAllReservations']);
+Route::post('/api/reservations/make', [ReservationController::class, 'makeReservation']);
+
 
 Route::get('/api/ressources/homepage', [CatalogueController::class, 'getHomepageRessources']);
 
@@ -70,4 +75,3 @@ Route::delete('/admin/delete/{id}', [AuthController::class, 'deleteUser'])->name
 
 // Bibliothécaire
 Route::get('/reservations-biblio', [BibliothecaireController::class, 'index'])->name('bibliothecaire.index');
-Route::get('/api/reservations', [BibliothecaireController::class, 'getReservations']);

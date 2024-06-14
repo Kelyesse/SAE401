@@ -62,14 +62,18 @@
 
 
     #footer-mail,
-    #footer-telephone {
+    #footer-telephone, #footer-maps {
         display: flex;
         align-items: center;
         gap: 30px;
     }
 
+    #footer-maps .rubriques-footer{
+        text-decoration: underline;
+    }
+
     .footer-icone {
-        width: 40px;
+        width: 30px;
     }
 
     #footer {

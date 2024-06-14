@@ -3,6 +3,19 @@ document.addEventListener("alpine:init", () => {
         ressource: [],
         ratings: [],
         numberOfRatings: 0,
+        isReservationPossible: true,
+        newReservation: {
+            id_utilisateur: null, // Assuming user with ID 2 exists
+            id_livre: null,
+            id_dvd: null, // Assuming DVD with ID 1 exists
+            type_ressource: "",
+            date_debut: new Date().toISOString().split("T")[0],
+            date_retour_prevue: new Date(
+                new Date().setDate(new Date().getDate() + 14)
+            )
+                .toISOString()
+                .split("T")[0],
+        },
         newReview: {
             commentaire: "",
             id_utilisateur: null, // Mettez à jour cela avec l'ID de l'utilisateur connecté
@@ -22,8 +35,8 @@ document.addEventListener("alpine:init", () => {
                 const queryParam = isbn ? `isbn=${isbn}` : `ian=${ian}`;
                 const response = await fetch(`/api/ressource?${queryParam}`);
                 const data = await response.json();
-                console.log(data);
                 this.ressource = data;
+                this.isReservationPossible = data.statut === "disponible";
             } catch (error) {
                 console.error(
                     "Une erreur s'est produite lors de la récupération de la ressource",
@@ -43,7 +56,6 @@ document.addEventListener("alpine:init", () => {
                     if (Array.isArray(data)) {
                         this.ratings = data;
                         this.numberOfRatings = data.length; // Mise à jour du nombre d'avis
-                        console.log(this.ratings); // Vérifiez que les avis sont correctement récupérés
                     } else {
                         console.warn("Unexpected data format:", data);
                         this.ratings = [];
@@ -84,7 +96,7 @@ document.addEventListener("alpine:init", () => {
                 const isbn = params.get("isbn");
                 const ian = params.get("ian");
                 const id = params.get("id");
-        
+
                 // Définir le type de ressource et l'ID associé
                 if (ian) {
                     this.newReview.type_ressource = "dvd";
@@ -93,34 +105,64 @@ document.addEventListener("alpine:init", () => {
                     this.newReview.type_ressource = "livre";
                     this.newReview.id_livre = id;
                 }
-        
-                // Note et commentaire sont maintenant définis par les inputs
-                console.log("Submitting review:", this.newReview);
-        
+
                 const response = await fetch("/api/add-review", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                        "X-CSRF-TOKEN": document
+                            .querySelector('meta[name="csrf-token"]')
+                            .getAttribute("content"),
                     },
                     body: JSON.stringify(this.newReview),
                 });
-        
+
                 if (response.ok) {
-                    // Réinitialiser le formulaire après un envoi réussi
-                    this.newReview.commentaire = "";
-                    this.newReview.note = null;
-                    alert("Avis ajouté avec succès !");
-                    // Recharger les avis ou rafraîchir la page si nécessaire
+                    this.newReservation.commentaire = "";
+                    this.newReservation.note = null;
                 } else {
-                    console.error("Échec de l'ajout de l'avis:", response.statusText);
-                    alert("Erreur lors de l'ajout de l'avis. Veuillez réessayer.");
+                    console.error(
+                        "Échec de l'ajout de l'avis:",
+                        response.statusText
+                    );
+                    alert(
+                        "Erreur lors de l'ajout de l'avis. Veuillez réessayer."
+                    );
                 }
             } catch (error) {
                 console.error("Erreur lors de la soumission de l'avis:", error);
                 alert("Une erreur s'est produite. Veuillez réessayer.");
             }
-        }
-        
+        },
+        async makeReservation() {
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const isbn = params.get("isbn");
+                const ian = params.get("ian");
+                const id = params.get("id");
+
+                if (ian) {
+                    this.newReservation.type_ressource = "dvd";
+                    this.newReservation.id_dvd = id;
+                } else if (isbn) {
+                    this.newReservation.type_ressource = "livre";
+                    this.newReservation.id_livre = id;
+                }
+
+                const response = await fetch("/api/reservations/make", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": document
+                            .querySelector('meta[name="csrf-token"]')
+                            .getAttribute("content"),
+                    },
+                    body: JSON.stringify(this.newReservation),
+                });
+            } catch (error) {
+                console.error("Erreur lors de la soumission de l'avis:", error);
+                alert("Une erreur s'est produite. Veuillez réessayer.");
+            }
+        },
     }));
 });

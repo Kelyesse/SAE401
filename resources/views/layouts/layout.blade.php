@@ -62,6 +62,10 @@
                 <img class="footer-icone" src="./storage/icone-telephone.svg" alt="">
                 <a class="rubriques-footer" href="tel:0612345678">06.12.34.56.78</a>
             </div>
+            <div id="footer-maps" class="footer-contact">
+                <img class="footer-icone" src="./storage/icone-lieu-blanc.png" alt="">
+                <a class="rubriques-footer" href="https://www.google.fr/maps/place/IUT+MMI/@43.1211982,5.9372669,17z/data=!3m1!4b1!4m6!3m5!1s0x12c91b0a6b2cea6f:0xa865e0843e39d84e!8m2!3d43.1211943!4d5.9398418!16s%2Fg%2F11g9qc1k8f?entry=ttu">70 Avenue Roger Devoucoux</a>
+            </div>
         </div>
         <div id="iconeLangueFooter" @click="open = !open" x-data="{ open: false }" x-cloak>
             <img id="icone-langue" class="footer-icone" src="./storage/icone-langues.svg"
@@ -83,6 +87,10 @@
             <div id="footer-telephone" class="footer-contact">
                 <img class="footer-icone" src="./storage/icone-telephone.svg" alt="">
                 <a href="tel:0612345678">06.12.34.56.78</a>
+            </div>
+            <div id="footer-maps" class="footer-contact">
+                <img class="footer-icone" src="./storage/icone-lieu-blanc.png" alt="">
+                <a href="https://www.google.fr/maps/place/IUT+MMI/@43.1211982,5.9372669,17z/data=!3m1!4b1!4m6!3m5!1s0x12c91b0a6b2cea6f:0xa865e0843e39d84e!8m2!3d43.1211943!4d5.9398418!16s%2Fg%2F11g9qc1k8f?entry=ttu">70 Avenue Roger Devoucoux</a>
             </div>
         </div>
         <div id="anchorList">

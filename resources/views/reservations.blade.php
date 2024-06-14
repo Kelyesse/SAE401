@@ -29,7 +29,8 @@
         </div>
         <div class="info-container">
             <img src="./storage/icone-email.png" alt="" class="email-icon">
-            <input type="email" class="info-email" id="info-email" x-model="userInfos.email" :readonly="!isEditing" :class="isEditing ? 'editing' : ''" />
+            <input type="email" class="info-email" id="info-email" x-model="userInfos.email" :readonly="!isEditing"
+                :class="isEditing ? 'editing' : ''" />
             <template x-if="!isEditing">
                 <img src="./storage/icone-modifier.png" alt="" class="edit-icon" @click="editField('email')" />
             </template>
@@ -58,7 +59,8 @@
         </div>
         <div class="info-container">
             <img src="./storage/icone-lieu.png" alt="" class="lieu-icon">
-            <input type="text" class="info-adresse" id="info-adresse" x-model="userInfos.adresse" :readonly="!isEditing" :class="isEditing ? 'editing' : ''" />
+            <input type="text" class="info-adresse" id="info-adresse" x-model="userInfos.adresse" :readonly="!isEditing"
+                :class="isEditing ? 'editing' : ''" />
             <div class="inputs-lieu">
                 <input type="text" class="info-code_postal" x-model="userInfos.code_postal" :readonly="!isEditing"
                     :class="isEditing ? 'editing' : ''" />
@@ -85,6 +87,12 @@
         </div>
         <div class="carousel">
             <div class="ressource-container">
+                <template x-if="isResponseEmpty">
+                    <div class="no-ressources-message">
+                        Vous n'avez aucune réservation active...
+                        <a href="/catalogue" class="explore-catalog-button">Explorez notre catalogue</a>
+                    </div>
+                </template>
                 <template x-for="reservation in reservations">
                     <a :href="'./ressource?' + (reservation . ressource_details . isbn ? 'isbn=' + reservation . ressource_details . isbn : 'ian=' + reservation . ressource_details . ian) + '&id=' + reservation . ressource_details . id" class="ressource-item">
                         <img class="ressource-img" :src="'./storage/' + reservation . ressource_details . imgUrl"
