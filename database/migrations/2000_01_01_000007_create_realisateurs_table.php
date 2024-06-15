@@ -16,10 +16,6 @@ class CreateRealisateursTable extends Migration
         Schema::create('realisateurs', function (Blueprint $table) {
             $table->id();
             $table->string('nom', 100);
-            $table->string('prenom', 100);
-            $table->text('biographie')->nullable();
-            $table->unsignedBigInteger('id_nationalite')->nullable();
-            $table->foreign('id_nationalite')->references('id')->on('pays');
             $table->timestamps();
         });
     }

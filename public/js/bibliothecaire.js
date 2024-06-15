@@ -10,6 +10,7 @@ document.addEventListener("alpine:init", () => {
             ian: "",
             genre: "",
             nombre_pages: "",
+            duree: "",
             annee: "",
             description: "",
             langue: "",
@@ -18,6 +19,7 @@ document.addEventListener("alpine:init", () => {
             realisateur: "",
             editeur: "",
             nombre_exemplaires: "",
+            imgUrl: null,
         },
         filters: {
             searchQuery: "",
@@ -83,19 +85,44 @@ document.addEventListener("alpine:init", () => {
         },
         async addResource() {
             try {
+                const formData = new FormData(); // Créez un nouvel objet FormData
+
+                // Ajoutez les champs de votre nouvel élément au FormData
+                formData.append("type", this.newResource.type);
+                formData.append("titre", this.newResource.titre);
+                formData.append("isbn", this.newResource.isbn);
+                formData.append("ian", this.newResource.ian);
+                formData.append("genre", this.newResource.genre);
+                formData.append("nombre_pages", this.newResource.nombre_pages);
+                formData.append("duree", this.newResource.duree);
+                formData.append("annee", this.newResource.annee);
+                formData.append("description", this.newResource.description);
+                formData.append("langue", this.newResource.langue);
+                formData.append("auteur", this.newResource.auteur);
+                formData.append("acteur", this.newResource.acteur);
+                formData.append("realisateur", this.newResource.realisateur);
+                formData.append("editeur", this.newResource.editeur);
+                formData.append(
+                    "nombre_exemplaires",
+                    this.newResource.nombre_exemplaires
+                );
+
+                // Ajoutez l'image au FormData
+                formData.append("imgUrl", this.newResource.imgUrl);
+                formData.append(
+                    "_token",
+                    document
+                        .querySelector('meta[name="csrf-token"]')
+                        .getAttribute("content")
+                );
+
+                // Perform the fetch request with FormData
                 const response = await fetch("/api/ressources/add", {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-CSRF-TOKEN": document
-                            .querySelector('meta[name="csrf-token"]')
-                            .getAttribute("content"),
-                    },
-                    body: JSON.stringify(this.newResource),
+                    body: formData,
                 });
                 const data = await response.json();
                 if (data.success) {
-                    alert("Ressource ajoutée avec succès");
                     this.fetchAllResources();
                 } else {
                     throw new Error("Erreur lors de l'ajout de la ressource");
@@ -143,6 +170,11 @@ document.addEventListener("alpine:init", () => {
                     error
                 );
             }
+        },
+        handleFileUpload(event) {
+            const file = event.target.files[0];
+            console.log(file);
+            this.newResource.imgUrl = file;
         },
         init() {
             this.fetchReservations();

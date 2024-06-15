@@ -77,11 +77,12 @@
                 <template x-if="newResource.type === 'livre'">
                     <div class="specific-fields">
                         <input type="text" x-model="newResource.auteur" placeholder="Nom de l'auteur">
-                        <select x-model="newResource.id_editeur">
+                        <select x-model="newResource.editeur">
                             <option value="" disabled selected>Sélectionnez un éditeur</option>
                             <template x-for="editeur in editeurs" :key="editeur . id">
                                 <option x-bind:value="editeur.nom" x-text="editeur.nom"></option>
                             </template>
+                            <input type="text" x-model="newResource.isbn" placeholder="ISBN">
                         </select>
                         <input type="number" x-model="newResource.nombre_pages" placeholder="Nombre de pages">
                     </div>
@@ -90,6 +91,8 @@
                     <div class="specific-fields">
                         <input type="text" x-model="newResource.acteur" placeholder="Acteur">
                         <input type="text" x-model="newResource.realisateur" placeholder="Réalisateur">
+                        <input type="text" x-model="newResource.ian" placeholder="IAN">
+                        <input type="number" x-model="newResource.duree" placeholder="Durée (en minutes)">
                     </div>
                 </template>
 
@@ -116,9 +119,19 @@
                     <option value="Politique">Politique</option>
                     <option value="Religion">Religion</option>
                 </select>
+                <select x-model="newResource.langue">
+                    <option value="" disabled selected>Sélectionnez une langue</option>
+                    <option value="fr">Français</option>
+                    <option value="en">Anglais</option>
+                    <option value="de">Allemand</option>
+                    <option value="es">Espagnol</option>
+                    <option value="it">Italien</option>
+                </select>
                 <input type="number" x-model="newResource.annee" placeholder="Année">
-                <input type="number" x-model="newResource.stock" placeholder="Stock">
-                <textarea x-model="newResource.description" placeholder="Description"></textarea>
+                <input type="number" x-model="newResource.nombre_exemplaires" placeholder="Quantité">
+                <textarea class="description-input" x-model="newResource.description"
+                    placeholder="Description"></textarea>
+                <input type="file" @change="handleFileUpload($event)">
                 <button type="submit">Ajouter au catalogue</button>
             </form>
         </div>
